@@ -1,0 +1,23 @@
+#!/bin/bash
+
+play1=(
+https://youtube.com/playlist?list=PL5OX79siN9B1Pcfeicx965SLCBtir5Euj)
+
+play2=(
+https://youtube.com/playlist?list=PL5OX79siN9B0gCM7MbJYx5kBELod-WLD0)
+
+
+#if [ $1 == 1 ]
+#then
+#    mpv --no-video $play1
+#elif [ $2 == 2 ]
+#then
+#    mpv --no-video $play2
+#fi
+
+if [ $1 == '1' ]
+then
+    mpv --no-video --shuffle $play1
+else [ $2 == '2' ]
+    mpv --no-video --shuffle $play2
+fi

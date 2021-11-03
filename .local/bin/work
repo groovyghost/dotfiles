@@ -1,0 +1,13 @@
+#!/bin/sh
+
+echo "Which PC to connect:"
+read host
+if [ $host -eq 15 ]
+then
+	(xfreerdp /u:PTT0070 /p:ro0t#321 /v:10.0.18.15 /f /auto-reconnect-max-retries:10)
+elif [ $host -eq 127 ]
+then
+	(xfreerdp /u:PTT0070 /p:ro0t#321 /v:10.0.18.127 /f /auto-reconnect-max-retries:10)
+else
+	echo "Enjoy the day"
+fi
