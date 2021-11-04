@@ -21,9 +21,3 @@ setopt HIST_SAVE_NO_DUPS  # do not save duplicated command
 setopt HIST_REDUCE_BLANKS  # remove unnecessary blanks
 setopt INC_APPEND_HISTORY_TIME  # append command to history file immediately after execution
 setopt EXTENDED_HISTORY  # record command start time
-
-# Alias
-alias hst="history | cut -c 8- | sort | uniq | fzf | tr '\\n' ' ' | xclip -sel c" #History to clipboard
-alias generate="rm -rf dst/.files dst/* && ssg6 src dst 'GroovyGhost' 'https://groovyghost.in'"
-alias deploy="rsync -rtvPhe 'ssh -p 72' ~/ggweb/dst/ root@groovyghost.in:/var/www/groovyghost"
-alias ssh-groovyghost="ssh -p 72 root@groovyghost.in"
