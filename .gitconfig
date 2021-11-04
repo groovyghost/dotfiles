@@ -1,3 +1,7 @@
 [user]
 	name = GroovyGhost
-	email = " grovyghost@protonmail.com"
+    email = " grovyghost@protonmail.com"
+
+[alias]
+    save = !git add -A && git commit -m 'update'
+    lg = !git log --pretty=format:\"%C(magenta)%h%Creset -%C(red)%d%Creset %s %C(dim green)(%cr) [%an]\" --abbrev-commit -30
