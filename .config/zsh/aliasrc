@@ -1,4 +1,3 @@
 alias hst="history | cut -c 8- | sort | uniq | fzf | tr '\\n' ' ' | xclip -sel c" #History to clipboard
 alias generate="rm -rf dst/.files dst/* && ssg6 src dst 'GroovyGhost' 'https://groovyghost.in'"
 alias deploy="rsync -rtvPhe 'ssh -p 72' ~/ggweb/dst/ root@groovyghost.in:/var/www/groovyghost"
-alias ssh-groovyghost="ssh -p 72 root@groovyghost.in"
