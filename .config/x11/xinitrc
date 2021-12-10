@@ -1,0 +1,11 @@
+#!/bin/sh
+
+set_wallpaper &
+sbar &
+dunst &
+xset r rate 300 50 &
+xmodmap ~/.config/xmodmap/Xmodmap &
+picom &
+sxhkd &
+
+exec dwm > /dev/null 2>&1

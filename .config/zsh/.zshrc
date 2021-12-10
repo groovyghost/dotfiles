@@ -1,10 +1,6 @@
 # Basic stuff
 source $ZDOTDIR/zsh-autosuggestions/zsh-autosuggestions.zsh
 source $ZDOTDIR/aliasrc
-export EDITOR='vim'
-export TERM='xterm'
-export TERMINAL='tilix'
-export BROWSER='brave'
 
 #ZSH Prompt (typewritten)
 fpath+=$HOME/.config/zsh/typewritten
