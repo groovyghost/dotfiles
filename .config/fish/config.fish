@@ -13,5 +13,3 @@ alias la='ls -lha'
 alias df='df -h'
 alias du='du -ch'
 
-# The next line updates PATH for the Google Cloud SDK.
-if [ -f '/home/user/google-cloud-sdk/path.fish.inc' ]; . '/home/user/google-cloud-sdk/path.fish.inc'; end
