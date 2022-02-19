@@ -1,0 +1,26 @@
+# This file contains fish universal variable definitions.
+# VERSION: 3.0
+SETUVAR __fish_initialized:3100
+SETUVAR _fish_abbr_fcd:cd\x20\x28find\x20\x2dnot\x20\x2dpath\x20\x27\x2a/\x5c\x2e\x2a\x27\x20\x2dtype\x20d\x20\x7c\x20fzf\x29
+SETUVAR _fish_abbr_fishabbr:nvim\x20\x7e/\x2econfig/fish/shortcuts\x2efish
+SETUVAR _fish_abbr_fishconf:nvim\x20\x7e/\x2econfig/fish/config\x2efish
+SETUVAR _fish_abbr_killvpn:/usr/local/pulse/pulsesvc\x20\x2dK
+SETUVAR _fish_abbr_mkdir:mkdir\x20\x2dp
+SETUVAR _fish_abbr_psl:\x20cd\x20/home/user/Public/Personal
+SETUVAR _fish_abbr_termconf:nvim\x20\x7e/\x2econfig/alacritty/alacritty\x2eyml
+SETUVAR _fish_abbr_vimconf:nvim\x20\x7e/\x2evimrc
+SETUVAR _fish_abbr_wrk:cd\x20/home/user/Public/Work
+SETUVAR fish_color_cancel:\x2dr
+SETUVAR fish_color_cwd:green
+SETUVAR fish_color_cwd_root:red
+SETUVAR fish_color_history_current:\x2d\x2dbold
+SETUVAR fish_color_host:normal
+SETUVAR fish_color_host_remote:yellow
+SETUVAR fish_color_match:\x2d\x2dbackground\x3dbrblue
+SETUVAR fish_color_normal:normal
+SETUVAR fish_color_search_match:bryellow\x1e\x2d\x2dbackground\x3dbrblack
+SETUVAR fish_color_selection:white\x1e\x2d\x2dbold\x1e\x2d\x2dbackground\x3dbrblack
+SETUVAR fish_color_status:red
+SETUVAR fish_color_user:brgreen
+SETUVAR fish_color_valid_path:\x2d\x2dbold
+SETUVAR fish_key_bindings:fish_default_key_bindings
