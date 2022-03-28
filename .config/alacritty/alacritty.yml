@@ -2,9 +2,9 @@
 shell:
   program: /usr/bin/fish
   args:
-    - -l
-    - -c
-    - "tmux attach || tmux"
+  - -l
+  - -c
+  - "tmux attach || tmux"
 window:
   dimensions:
     columns: 140

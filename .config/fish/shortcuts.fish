@@ -5,5 +5,4 @@ abbr termconf "$EDITOR ~/.config/alacritty/alacritty.yml"
 abbr mkdir 'mkdir -p'
 abbr wrk 'cd /home/user/Public/Work'
 abbr psl ' cd /home/user/Public/Personal'
-abbr fcd "cd (find -not -path '*/\.*' -type d | fzf)"
 abbr killvpn '/usr/local/pulse/pulsesvc -K'
