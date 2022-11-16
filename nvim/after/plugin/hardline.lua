@@ -1,3 +1,9 @@
+local status_ok, hardline = pcall(require, "hardline")
+if not status_ok then
+  vim.notify("hardline error")
+  return
+end
+
 require('hardline').setup {
   bufferline = true,  -- enable bufferline
   bufferline_settings = {
