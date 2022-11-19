@@ -3,8 +3,8 @@ vim.scriptencoding = 'utf-8'
 
 local options = {
     backup = false,
-    clipboard = "unnamedplus",
-    completeopt = { "menuone", "noselect" },
+    clipboard = { "unnamedplus", "unnamed"},
+    completeopt = { "menu", "menuone", "noselect" },
     conceallevel = 0,
     fileencoding = 'utf-8',
     hlsearch = true,

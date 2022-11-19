@@ -1,9 +1,10 @@
 --Visual highlights
 local options = {
     cursorline = true,
-    termguicolors = false,
+    termguicolors = true,
     winblend = 0,
     wildoptions = 'pum',
+    pumheight = 6,
     pumblend = 5,
     background = 'dark',
 }

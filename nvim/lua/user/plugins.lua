@@ -11,7 +11,6 @@ if fn.empty(fn.glob(install_path)) > 0 then
     'https://github.com/wbthomason/packer.nvim',
     install_path
   })
-  print("Installing packer close and reopen Neovim...")
   vim.cmd([[packadd packer.nvim]])
 end
 
@@ -42,12 +41,25 @@ packer.init({
 return packer.startup(function(use)
   use "wbthomason/packer.nvim" -- Have packer manage itself
   use "nvim-lua/plenary.nvim" -- Useful lua functions used by lots of plugins
-  use "shaunsingh/nord.nvim" --Nord theme
+  use 'arcticicestudio/nord-vim' --Nord theme
+  --use 'sainnhe/gruvbox-material' --Gruvbox-materal theme
   use "kyazdani42/nvim-web-devicons" --Icons to be used by other plugins
-  use "ojroques/nvim-hardline" --A statusline / bufferline
+  use "nvim-lualine/lualine.nvim" --A statusline
   use "lewis6991/gitsigns.nvim" --For Git integration
   use "windwp/nvim-autopairs" -- Autopairs, integrates with both cmp and treesitter
   use "goolord/alpha-nvim" --Startup page
+  use 'nvim-tree/nvim-tree.lua'
+  
+  --use "hrsh7th/nvim-cmp"
+  --use "hrsh7th/cmp-buffer"
+  --use "hrsh7th/cmp-path"
+  
+  --use "L3MON4D3/LuaSnip"
+  --use "rafamadriz/friendly-snippets"
+
+  --use "neovim/nvim-lspconfig"
+  --use "williamboman/nvim-lsp-installer"
+ 
   
   if packer_bootstrap then
 		require("packer").sync()
