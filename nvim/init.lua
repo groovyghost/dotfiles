@@ -1,4 +1,6 @@
-require('user.base')
-require('user.highlights')
+require('user.autocmds')
+require('user.colors')
 require('user.maps')
+require('user.options')
 require('user.plugins')
+require('user.lsp')

@@ -1,11 +1,18 @@
+local colorscheme = "gruvbox-material" --nord or gruvbox-material
+
+local status_ok, _ = pcall(vim.cmd, "colorscheme " .. colorscheme)
+if not status_ok then
+  return
+end
+
 local status, lualine = pcall(require, "lualine")
 if not status then
   return
 end
-
+vim.o.background = "dark"
 lualine.setup {
   options = {
-    theme = 'nord',
+    theme = colorscheme,
     section_separators = '',
     component_separators = '|',
     disabled_filetypes = { 'packer', 'NvimTree'}

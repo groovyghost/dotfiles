@@ -13,6 +13,7 @@ vim.g.mapleader = " "
 
 keymap("n", "q", "<Nop>", opts) --Disable vim macros
 keymap('i', 'jk', '<ESC>', opts) -- use jk to exit insert mode
+keymap('i', 'kj', '<ESC>', opts) -- use jk to exit insert mode
 
 keymap('n', '+', '<C-a>', opts) -- increment
 keymap('n', '-', '<C-x>', opts) -- decrement
@@ -34,3 +35,10 @@ keymap("n", "<leader>e", ":NvimTreeToggle<CR>", opts) -- toggle file explorer (n
 
 -- restart lsp server (not on youtube nvim video)
 --keymap.set("n", "<leader>rs", ":LspRestart<CR>") -- mapping to restart lsp if necessary
+
+-- telescope
+keymap("n", "<leader>ff", "<cmd>Telescope find_files<cr>", opts) -- find files within current working directory, respects .gitignore
+keymap("n", "<leader>fs", "<cmd>Telescope live_grep<cr>", opts) -- find string in current working directory as you type
+keymap("n", "<leader>fc", "<cmd>Telescope grep_string<cr>", opts) -- find string under cursor in current working directory
+keymap("n", "<leader>fb", "<cmd>Telescope buffers<cr>", opts) -- list open buffers in current neovim instance
+keymap("n", "<leader>fh", "<cmd>Telescope help_tags<cr>", opts) -- list available help tags

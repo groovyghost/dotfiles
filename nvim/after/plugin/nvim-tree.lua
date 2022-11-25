@@ -3,10 +3,6 @@ if not setup then
   return
 end
 
--- Disable netrw since nvim-tree is used
-vim.g.loaded_netrw = 1
-vim.g.loaded_netrwPlugin = 1
-
 nvimtree.setup {
   update_focused_file = {
     enable = true,
