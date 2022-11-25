@@ -24,7 +24,7 @@ background_opacity: 0.97
 # Font configuration (changes require restart)
 font:
   normal:
-    family: UbuntuMono 
+    family: JetBrainsMono Nerd Font 
     style: Regular
   size: 15.0
   offset:

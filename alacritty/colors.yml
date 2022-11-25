@@ -1475,7 +1475,7 @@ schemes:
       cyan:    '0x00ffff'
       white:   '0xffffff'
 
-colors: *nord
+#colors: *gruvbox_light
 #afterglow
 #argonaut
 #atom_one_light
@@ -1533,3 +1533,5 @@ colors: *nord
 #tomorrow_night_bright
 #wombat
 #xterm
+#colors: *nord
+colors: *gruvbox_material
