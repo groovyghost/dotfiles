@@ -1,5 +1,4 @@
-abbr fishconf "$EDITOR ~/.config/fish/config.fish"
-abbr fishabbr "$EDITOR ~/.config/fish/shortcuts.fish"
+abbr fishconf "$EDITOR ~/.config/fish/"
 abbr vimconf "$EDITOR ~/.vimrc"
 abbr termconf "$EDITOR ~/.config/alacritty/"
 abbr mkdir 'mkdir -p'
