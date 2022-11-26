@@ -1,20 +1,24 @@
 local servers = {
-    "ansiblels",
-    "dockerls",
     "bashls",
-    "cssls",
+    "dockerls",
+    "marksman",
     "html",
+    "sumneko_lua",
     "pyright",
     "terraformls",
-    "sumneko_lua",
+    "yamlls",
 }
 
 local null_ls_servers = {
-    "black",
-    "tflint",
-    "shellcheck",
-    "yamllint",
+    -- Formatter
+    "autopep8",
     "stylua",
+    "yamlfmt",
+    -- Linter
+    "shellcheck",
+    "tflint",
+    "vale",
+    "yamllint",
 }
 
 
@@ -48,6 +52,7 @@ if not lspconfig_status_ok then
 end
 
 local opts = {}
+
 
 for _, server in pairs(servers) do
 	opts = {

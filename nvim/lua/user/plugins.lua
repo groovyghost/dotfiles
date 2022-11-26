@@ -3,7 +3,7 @@ local fn = vim.fn
 local install_path = fn.stdpath('data') .. '/site/pack/packer/start/packer.nvim'
 
 if fn.empty(fn.glob(install_path)) > 0 then
-  PACKER_BOOTSTRAP = fn.system({
+  packer_bootstrap = fn.system({
     'git',
     'clone',
     '--depth',
@@ -101,15 +101,8 @@ return packer.startup(function(use)
     "jayp0521/mason-null-ls.nvim",
   }
   use 'RRethy/vim-illuminate'
-  --[[
-    clean up config
-    treesitter config
-    telescope config
-    comments install and config
-    bufferline install and config
-    toggleterm install and config
-  --]]
-  if PACKER_BOOTSTRAP then
+
+  if packer_bootstrap then
 		require('packer').sync()
 	end
 end)
