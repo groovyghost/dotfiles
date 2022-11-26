@@ -1,5 +1,4 @@
 function fish_right_prompt
-    echo -n (set_color yellow) (__kube_prompt)
     set -l cmd_status $status
     if test $cmd_status -ne 0
         echo -n (set_color red)"✘ $cmd_status"
@@ -109,7 +108,7 @@ function fish_right_prompt
         set status_unmerged 1
     end
     set -l status_untracked 0
-    if string match -e '\?\?' $porcelain_status
+    if string match -qe '\?\?' $porcelain_status
         set status_untracked 1
     end
 
