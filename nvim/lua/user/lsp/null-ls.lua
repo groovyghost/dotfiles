@@ -9,7 +9,7 @@ local formatting = null_ls.builtins.formatting
 local diagnostics = null_ls.builtins.diagnostics
 
 -- https://github.com/prettier-solidity/prettier-plugin-solidity
-null_ls.setup {
+null_ls.setup({
   debug = false,
   sources = {
     formatting.autopep8,
@@ -19,4 +19,4 @@ null_ls.setup {
     formatting.yamlfmt,
     diagnostics.shellcheck,
   },
-}
+})

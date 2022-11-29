@@ -3,7 +3,7 @@ if not setup then
   return
 end
 
-nvimtree.setup {
+nvimtree.setup({
   update_focused_file = {
     enable = true,
     update_cwd = true,
@@ -12,8 +12,8 @@ nvimtree.setup {
     root_folder_modifier = ":t",
     icons = {
       glyphs = {
-        default = "",
-        symlink = "",
+        default = "",
+        symlink = "",
         folder = {
           arrow_open = "",
           arrow_closed = "",
@@ -51,4 +51,4 @@ nvimtree.setup {
     width = 30,
     side = "left",
   },
-}
+})

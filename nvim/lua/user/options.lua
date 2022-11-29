@@ -1,13 +1,13 @@
 --Basic options
-vim.scriptencoding = 'utf-8'
+vim.scriptencoding = "utf-8"
 
 local options = {
-  syntax = 'enable',
+  syntax = "enable",
   backup = false,
   clipboard = { "unnamedplus", "unnamed" },
   completeopt = { "menu", "menuone", "noselect" },
   conceallevel = 0,
-  fileencoding = 'utf-8',
+  fileencoding = "utf-8",
   hlsearch = false,
   cmdheight = 1,
   mouse = "a",
@@ -28,20 +28,20 @@ local options = {
   relativenumber = true,
   numberwidth = 4,
   wrap = false,
-  backspace = { 'start', 'eol', 'indent' },
-  --shell = 'fish',
+  backspace = { "start", "eol", "indent" },
+  shell = "fish",
   smarttab = true,
   scrolloff = 8,
   breakindent = true,
   title = true,
   signcolumn = "yes",
-  encoding = 'utf-8',
+  encoding = "utf-8",
   termguicolors = true,
   winblend = 0,
-  wildoptions = 'pum',
+  wildoptions = "pum",
   pumheight = 6,
   pumblend = 5,
-  background = 'dark',
+  background = "dark",
 }
 
 for k, v in pairs(options) do
@@ -50,6 +50,6 @@ end
 
 -- Turn off paste mode when leaving insert
 vim.api.nvim_create_autocmd("InsertLeave", {
-  pattern = '*',
-  command = "set nopaste"
+  pattern = "*",
+  command = "set nopaste",
 })
