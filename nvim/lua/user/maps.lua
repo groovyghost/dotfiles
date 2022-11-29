@@ -32,6 +32,7 @@ keymap('', 'sh', '<C-w>h',opts)
 keymap('', 'sk', '<C-w>k',opts)
 keymap('', 'sj', '<C-w>j',opts)
 keymap('', 'sl', '<C-w>l', opts)
+keymap('n', '<leader>md', '<cmd>MarkdownPreviewToggle<cr>', opts)
 
 keymap("n", "<leader>e", ":NvimTreeToggle<CR>", opts) -- toggle file explorer (nvim tree)
 

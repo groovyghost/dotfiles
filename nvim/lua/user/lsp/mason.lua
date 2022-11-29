@@ -1,7 +1,6 @@
 local servers = {
   "bashls",
   "dockerls",
-  "marksman",
   "html",
   "sumneko_lua",
   "pyright",

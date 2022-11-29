@@ -15,7 +15,6 @@ null_ls.setup({
     formatting.autopep8,
     formatting.stylua.with({ extra_args = { "--indent-type", "Spaces", "--indent-width", "2" } }),
     formatting.terraform_fmt,
-    diagnostics.vale,
     formatting.yamlfmt,
     diagnostics.shellcheck,
   },
