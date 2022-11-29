@@ -17,7 +17,6 @@ local null_ls_servers = {
   -- Linter
   "shellcheck",
   "tflint",
-  "vale",
   "yamllint",
 }
 

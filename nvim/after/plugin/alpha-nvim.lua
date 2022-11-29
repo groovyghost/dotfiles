@@ -27,7 +27,7 @@ dashboard.section.buttons.val = {
   dashboard.button(
     "f",
     "  Find file",
-    ":lua require 'telescope'.extensions.file_browser.file_browser({hidden = true})<CR>"
+    "<cmd>lua require'telescope.builtin'.find_files(require('telescope.themes').get_dropdown({ cwd = vim.fn.expand('%:p:h'), previewer = false }))<cr>"
   ),
   dashboard.button("e", "  New file", ":ene<CR>"),
   dashboard.button("s", "  Settings", ":e ~/.config/nvim/<CR>"),
