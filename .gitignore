@@ -5,3 +5,4 @@ command-history
 *.swp
 swap
 fish_variables
+tmux/plugins
