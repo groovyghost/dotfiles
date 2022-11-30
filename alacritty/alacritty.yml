@@ -14,7 +14,7 @@ window:
     y: 0
   dynamic_padding: true
   decorations: full
-  startup_mode: Maximized 
+  startup_mode: Maximized
 
 scrolling:
   history: 10000
@@ -24,7 +24,7 @@ background_opacity: 0.97
 # Font configuration (changes require restart)
 font:
   normal:
-    family: JetBrainsMono Nerd Font 
+    family: JetBrainsMono Nerd Font
     style: Regular
   size: 15.0
   offset:
