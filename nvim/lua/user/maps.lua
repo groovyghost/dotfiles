@@ -35,6 +35,7 @@ keymap('', 'sl', '<C-w>l', opts)
 keymap('n', '<leader>md', '<cmd>MarkdownPreviewToggle<cr>', opts)
 
 keymap("n", "<leader>e", ":NvimTreeToggle<CR>", opts) -- toggle file explorer (nvim tree)
+keymap("n", "<leader>ee", ":NvimTreeFocus<CR>", opts) -- toggle file explorer (nvim tree)
 
 -- restart lsp server
 keymap("n", "<leader>rs", ":LspRestart<CR>", opts) -- mapping to restart lsp if necessary
