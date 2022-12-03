@@ -12,6 +12,15 @@ keymap("", "<Space>", "<Nop>", opts) --Remap space as leader key
 vim.g.mapleader = " "
 
 keymap("n", "q", "<Nop>", opts) --Disable vim macros
+--Disable arrows in insert_mode and normal_mode
+keymap("n", "<up>", "<Nop>", opts)
+keymap("n", "<down>", "<Nop>", opts)
+keymap("n", "<right>", "<Nop>", opts)
+keymap("n", "<left>", "<Nop>", opts)
+keymap("i", "<up>", "<Nop>", opts)
+keymap("i", "<down>", "<Nop>", opts)
+keymap("i", "<right>", "<Nop>", opts)
+keymap("i", "<left>", "<Nop>", opts)
 keymap("i", "jk", "<ESC>", opts) -- use jk to exit insert mode
 keymap("i", "kj", "<ESC>", opts) -- use jk to exit insert mode
 
