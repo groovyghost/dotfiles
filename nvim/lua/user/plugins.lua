@@ -52,24 +52,23 @@ return packer.startup(function(use)
   -- Indent line
   use("lukas-reineke/indent-blankline.nvim")
   -- Autopair
-
   use({
     "windwp/nvim-autopairs",
     config = function()
       require("nvim-autopairs").setup({})
     end,
   })
-
+  use({ "windwp/nvim-ts-autotag", opt = true })
+  --Bufferline
   use("akinsho/nvim-bufferline.lua")
-
   -- Icons
   use("kyazdani42/nvim-web-devicons")
-
+  --Statusline
   use({
     "nvim-lualine/lualine.nvim",
     requires = { "kyazdani42/nvim-web-devicons" },
   })
-
+  --Git integration
   use({
     "lewis6991/gitsigns.nvim",
     requires = { "nvim-lua/plenary.nvim" },
@@ -77,16 +76,13 @@ return packer.startup(function(use)
       require("gitsigns").setup({})
     end,
   })
-
   -- Dashboard (start screen)
   use({
     "goolord/alpha-nvim",
     requires = { "kyazdani42/nvim-web-devicons" },
   })
-
   --Performance
   use("lewis6991/impatient.nvim")
-
   --AutoCompletion
   use("onsails/lspkind.nvim")
   use("hrsh7th/nvim-cmp")
@@ -95,10 +91,7 @@ return packer.startup(function(use)
   use("hrsh7th/cmp-nvim-lsp")
   --Snippets
   use("L3MON4D3/LuaSnip")
-
   -- Treesitter
-  use({ "windwp/nvim-ts-autotag", opt = true })
-
   use({
     "nvim-treesitter/nvim-treesitter",
     run = function()
@@ -106,7 +99,8 @@ return packer.startup(function(use)
       ts_update()
     end,
   })
-
+  use("RRethy/vim-illuminate")
+  --LSP Config
   use({
     "williamboman/mason.nvim",
     "williamboman/mason-lspconfig.nvim",
@@ -114,25 +108,27 @@ return packer.startup(function(use)
     "jose-elias-alvarez/null-ls.nvim",
     "jayp0521/mason-null-ls.nvim",
   })
-
+  --Telescope
   use({
     "nvim-telescope/telescope.nvim",
   })
-
-  use("RRethy/vim-illuminate")
-
+  --Comment
   use({
     "numToStr/Comment.nvim",
     config = function()
-      require("Comment").setup({ theme = "gruvbox-material" })
+      require("Comment").setup({ theme = "nord" })
     end,
   })
+  --Markdown Previewer
   use({
     "iamcco/markdown-preview.nvim",
     run = function()
       vim.fn["mkdp#util#install"]()
     end,
   })
+  --Vim Trainer
+  use("ThePrimeagen/vim-be-good")
+
   if PACKER_BOOTSTRAP then
     require("packer").sync()
   end

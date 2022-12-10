@@ -25,14 +25,14 @@ dashboard.section.header.val = banner
 -- Menu
 dashboard.section.buttons.val = {
   dashboard.button(
-    "f",
+    "F",
     "  Find file",
     "<cmd>lua require'telescope.builtin'.find_files(require('telescope.themes').get_dropdown({ cwd = vim.fn.expand('%:p:h'), previewer = false }))<cr>"
   ),
-  dashboard.button("e", "  New file", ":ene<CR>"),
-  dashboard.button("s", "  Settings", ":e ~/.config/nvim/<CR>"),
-  dashboard.button("u", "  Theme", ":Telescope colorscheme<CR>"),
-  dashboard.button("q", "  Quit", ":q<CR>"),
+  dashboard.button("E", "  New file", ":ene<CR>"),
+  dashboard.button("S", "  Settings", ":e ~/.config/nvim/<CR>"),
+  dashboard.button("U", "  Theme", ":Telescope colorscheme<CR>"),
+  dashboard.button("Q", "  Quit", ":q<CR>"),
 }
 
 dashboard.section.footer.val = default_footer
