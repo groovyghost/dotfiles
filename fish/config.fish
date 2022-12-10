@@ -14,3 +14,4 @@ alias ll='exa -l --icons -a --git'
 
 # The next line updates PATH for the Google Cloud SDK.
 if [ -f '/home/user/.local/bin/google-cloud-sdk/path.fish.inc' ]; . '/home/user/.local/bin/google-cloud-sdk/path.fish.inc'; end
+kubectl completion fish | source
