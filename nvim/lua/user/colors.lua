@@ -1,25 +1,29 @@
-local colorscheme = "nord" --nord or gruvbox-material
-
-local status_ok, _ = pcall(vim.cmd, "colorscheme " .. colorscheme)
-if not status_ok then
-  return
-end
+vim.cmd.colorscheme "catppuccin"
 
 local status, lualine = pcall(require, "lualine")
 if not status then
   return
 end
 
-vim.g.nord_contrast = true
-vim.g.nord_borders = true
-vim.g.nord_disable_background = true
-vim.g.nord_uniform_diff_background = true
-vim.g.nord_bold = false
+require("catppuccin").setup({
+    flavour = "macchiato", -- latte, frappe, macchiato, mocha
+    transparent_background = true,
+    styles = {
+        comments = { "italic" },
+    },
+    color_overrides = {},
+    custom_highlights = {},
+    integrations = {
+        cmp = true,
+        gitsigns = true,
+        nvimtree = true,
+        telescope = true,
+    },
+})
 
--- vim.o.background = "dark"
 lualine.setup({
   options = {
-    theme = colorscheme,
+    theme = "catppuccin",
     section_separators = "",
     component_separators = "|",
     disabled_filetypes = { "packer", "NvimTree" },

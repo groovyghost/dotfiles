@@ -21,8 +21,6 @@ keymap("i", "<up>", "<Nop>", opts)
 keymap("i", "<down>", "<Nop>", opts)
 keymap("i", "<right>", "<Nop>", opts)
 keymap("i", "<left>", "<Nop>", opts)
-keymap("i", "jk", "<ESC>", opts) -- use jk to exit insert mode
-keymap("i", "kj", "<ESC>", opts) -- use jk to exit insert mode
 
 keymap("n", "+", "<C-a>", opts) -- increment
 keymap("n", "-", "<C-x>", opts) -- decrement
