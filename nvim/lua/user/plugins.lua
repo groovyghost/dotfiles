@@ -3,8 +3,7 @@ local fn = vim.fn
 local install_path = fn.stdpath("data") .. "/site/pack/packer/start/packer.nvim"
 
 if fn.empty(fn.glob(install_path)) > 0 then
-  PACKER_BOOTSTRAP = fn.system({
-    "git",
+  PACKER_BOOTSTRAP = fn.system({ "git",
     "clone",
     "--depth",
     "1",
@@ -44,9 +43,7 @@ return packer.startup(function(use)
   use("wbthomason/packer.nvim") -- Have packer manage itself
   use("nvim-lua/plenary.nvim") -- Useful lua functions used by lots of plugins
   -- Color schemes
-  use("shaunsingh/nord.nvim")
-  use("sainnhe/gruvbox-material") --Gruvbox-materal theme
-
+  use { "catppuccin/nvim", as = "catppuccin" }
   -- File explorer
   use("nvim-tree/nvim-tree.lua")
   -- Indent line
@@ -76,11 +73,6 @@ return packer.startup(function(use)
       require("gitsigns").setup({})
     end,
   })
-  -- Dashboard (start screen)
-  use({
-    "goolord/alpha-nvim",
-    requires = { "kyazdani42/nvim-web-devicons" },
-  })
   --Performance
   use("lewis6991/impatient.nvim")
   --AutoCompletion
@@ -99,7 +91,6 @@ return packer.startup(function(use)
       ts_update()
     end,
   })
-  use("RRethy/vim-illuminate")
   --LSP Config
   use({
     "williamboman/mason.nvim",
