@@ -111,12 +111,10 @@ return packer.startup(function(use)
     end,
   })
   --Markdown Previewer
-  use({
+use({
     "iamcco/markdown-preview.nvim",
-    run = function()
-      vim.fn["mkdp#util#install"]()
-    end,
-  })
+    run = function() vim.fn["mkdp#util#install"]() end,
+})
   --Vim Trainer
   use("ThePrimeagen/vim-be-good")
 

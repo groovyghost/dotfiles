@@ -25,8 +25,6 @@ keymap("i", "<left>", "<Nop>", opts)
 keymap("n", "+", "<C-a>", opts) -- increment
 keymap("n", "-", "<C-x>", opts) -- decrement
 
-keymap("n", "dw", 'vb"_d', opts) -- Delete a word backwards
-
 -- window management
 -- New tab
 keymap('n', 'te', ':tabedit', opts)
