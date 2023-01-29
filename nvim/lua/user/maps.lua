@@ -11,7 +11,6 @@ local opts = { silent = true }
 keymap("", "<Space>", "<Nop>", opts) --Remap space as leader key
 vim.g.mapleader = " "
 
-keymap("n", "q", "<Nop>", opts) --Disable vim macros
 --Disable arrows in insert_mode and normal_mode
 keymap("n", "<up>", "<Nop>", opts)
 keymap("n", "<down>", "<Nop>", opts)
@@ -24,10 +23,8 @@ keymap("i", "<left>", "<Nop>", opts)
 
 keymap("n", "+", "<C-a>", opts) -- increment
 keymap("n", "-", "<C-x>", opts) -- decrement
-
--- window management
--- New tab
-keymap('n', 'te', ':tabedit', opts)
+keymap("v", "J", ":m '>+1<CR>gv=gv", opts)
+keymap("v", "K", ":m '<-2<CR>gv=gv", opts)
 -- Split window
 keymap('n', 'ss', ':split<Return><C-w>w',opts)
 keymap('n', 'sv', ':vsplit<Return><C-w>w', opts)
@@ -37,7 +34,6 @@ keymap('', 'sh', '<C-w>h',opts)
 keymap('', 'sk', '<C-w>k',opts)
 keymap('', 'sj', '<C-w>j',opts)
 keymap('', 'sl', '<C-w>l', opts)
-keymap('n', '<leader>md', '<cmd>MarkdownPreviewToggle<cr>', opts)
 
 keymap("n", "<leader>e", ":NvimTreeToggle<CR>", opts) -- toggle file explorer (nvim tree)
 keymap("n", "<leader>ee", ":NvimTreeFocus<CR>", opts) -- toggle file explorer (nvim tree)
