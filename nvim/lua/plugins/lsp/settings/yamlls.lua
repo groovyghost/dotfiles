@@ -1,4 +1,4 @@
-local opts = {
+return {
   schemaStore = {
     enable = true,
     url = "https://www.schemastore.org/api/json/catalog.json",
@@ -19,9 +19,7 @@ local opts = {
     ["https://raw.githubusercontent.com/argoproj/argo-workflows/master/api/jsonschema/schema.json"] = "*flow*.{yml,yaml}",
   },
   format = { enabled = true },
-  validate = false, -- TODO: conflicts between Kubernetes resources and kustomization.yaml
+  validate = false,
   completion = true,
   hover = true,
 }
-
-return opts

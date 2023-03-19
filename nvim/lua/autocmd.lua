@@ -28,10 +28,6 @@ local disabled_built_ins = {
   "getscriptPlugin",
   "gzip",
   "logipat",
-  "netrw",
-  "netrwPlugin",
-  "netrwSettings",
-  "netrwFileHandlers",
   "matchit",
   "matchparen",
   "tar",
@@ -46,3 +42,9 @@ local disabled_built_ins = {
 for _, plugin in pairs(disabled_built_ins) do
   vim.g["loaded_" .. plugin] = 1
 end
+
+-- Turn off paste mode when leaving insert
+vim.api.nvim_create_autocmd("InsertLeave", {
+  pattern = "*",
+  command = "set nopaste",
+})
