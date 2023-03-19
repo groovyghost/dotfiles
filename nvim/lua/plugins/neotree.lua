@@ -23,7 +23,6 @@ return {
 			mappings = {
 				["o"] = "open",
 				["<Tab>"] = { "toggle_preview", config = { use_float = true } },
-				["a"] = "add_directory", -- also accepts the optional config.show_path option like "add". this also supports BASH style brace expansion.
 				["d"] = "delete",
 				["r"] = "rename",
 				["y"] = "copy_to_clipboard",
@@ -32,7 +31,6 @@ return {
 				["c"] = { "copy", config = { show_path = "absolute" }}, --"none", "relative", "absolute"
 				["m"] = "move", -- takes text input for destination, also accepts the optional config.show_path option like "add".
 				["q"] = "close_window",
-				["r"] = "refresh",
 				["?"] = "show_help",
 				["f"] = "fuzzy_sorter",
 			},
