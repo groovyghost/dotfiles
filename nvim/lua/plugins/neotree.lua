@@ -10,6 +10,11 @@ return {
 	keys = {
 		{ "<leader>e", "<cmd>Neotree reveal toggle<cr>", desc = "Toggle Filetree" },
 	},
+  config = {
+    filesystem = {
+      hijack_netrw_behavior = "open_current"
+    },
+  },
 	opts = {
 		close_if_last_window = true, -- Close Neo-tree if it is the last window left in the tab
 		popup_border_style = "rounded", -- "double", "none", "rounded", "shadow", "single" or "solid"
