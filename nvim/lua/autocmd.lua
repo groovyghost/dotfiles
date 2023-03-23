@@ -18,7 +18,6 @@ autocmd("BufWritePre", {
 })
 
 -- Don't auto commenting new lines
--- don't auto comment new line
 autocmd("BufEnter", { command = [[set formatoptions-=cro]] })
 
 -- Disable some builtin vim plugins
@@ -28,6 +27,10 @@ local disabled_built_ins = {
   "getscriptPlugin",
   "gzip",
   "logipat",
+  "netrw",
+  "netrwPlugin",
+  "netrwSettings",
+  "netrwFileHandlers",
   "matchit",
   "matchparen",
   "tar",
