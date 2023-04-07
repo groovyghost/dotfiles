@@ -20,34 +20,14 @@ autocmd("BufWritePre", {
 -- Don't auto commenting new lines
 autocmd("BufEnter", { command = [[set formatoptions-=cro]] })
 
--- Disable some builtin vim plugins
-local disabled_built_ins = {
-  "2html_plugin",
-  "getscript",
-  "getscriptPlugin",
-  "gzip",
-  "logipat",
-  "netrw",
-  "netrwPlugin",
-  "netrwSettings",
-  "netrwFileHandlers",
-  "matchit",
-  "matchparen",
-  "tar",
-  "tarPlugin",
-  "rrhelper",
-  "vimball",
-  "vimballPlugin",
-  "zip",
-  "zipPlugin",
-}
-
-for _, plugin in pairs(disabled_built_ins) do
-  vim.g["loaded_" .. plugin] = 1
-end
-
 -- Turn off paste mode when leaving insert
-vim.api.nvim_create_autocmd("InsertLeave", {
+autocmd("InsertLeave", {
   pattern = "*",
   command = "set nopaste",
+})
+
+-- Clear Highlight after search
+autocmd("InsertLeave", {
+  pattern = "*",
+  command = ':let @/=""',
 })

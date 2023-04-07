@@ -7,12 +7,17 @@ return {
     'L3MON4D3/LuaSnip',
     'rafamadriz/friendly-snippets',
     'onsails/lspkind.nvim'},
+  event = "InsertEnter",
   config = function()
     local cmp = require ("cmp")
     local luasnip =require ("luasnip")
     local lspkind = require("lspkind")
     require("luasnip/loaders/from_vscode").lazy_load()
 
+    luasnip.setup({
+      region_check_events = "InsertEnter",
+      delete_check_events = "InsertEnter",
+    })
     cmp.setup({
       snippet = {
         expand = function(args)
@@ -22,8 +27,8 @@ return {
       mapping = cmp.mapping.preset.insert({
         ["<C-k>"] = cmp.mapping.select_prev_item(),
         ["<C-j>"] = cmp.mapping.select_next_item(),
-        ["<C-b>"] = cmp.mapping(cmp.mapping.scroll_docs(-1), { "i", "c" }),
-        ["<C-f>"] = cmp.mapping(cmp.mapping.scroll_docs(1), { "i", "c" }),
+        ["<C-p>"] = cmp.mapping(cmp.mapping.scroll_docs(-1), { "i", "c" }),
+        ["<C-n>"] = cmp.mapping(cmp.mapping.scroll_docs(1), { "i", "c" }),
         ["<C-Space>"] = cmp.mapping(cmp.mapping.complete(), { "i", "c" }),
         ["<C-e>"] = cmp.mapping({
           i = cmp.mapping.abort(),
@@ -45,10 +50,6 @@ return {
         format = lspkind.cmp_format({
           mode = "symbol", -- show only symbol annotations
           maxwidth = 50, -- prevent the popup from showing more than provided characters (e.g 50 will not show more than 50 characters)
-          ellipsis_char = "...", -- when popup menu exceed maxwidth, the truncated part would show ellipsis_char instead (must define maxwidth first)
-          before = function(entry, vim_item)
-            return vim_item
-          end,
         }),
       },
     })
@@ -57,6 +58,8 @@ return {
   set completeopt=menuone,noinsert,noselect
   highlight! default link CmpItemKind CmpItemMenuDefault
 ]])
+    -- Disable certain capabilities when working on Markdown files.
+cmp.setup.filetype({ "markdown" }, { sources = { name = "buffer" } })
   end
 }
 

@@ -43,6 +43,7 @@ M.treesitter_ensure_installed = {
 
 -- LSPs that should be installed by Mason-lspconfig
 M.lsp_servers = {
+  "ansiblels",
   "bashls",
   "dockerls",
   "jsonls",
