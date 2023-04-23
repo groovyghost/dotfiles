@@ -3,7 +3,7 @@ return {
     "nvim-neo-tree/neo-tree.nvim", -- Plugin to manage & access the file system using an explorer
     dependencies = {
       "nvim-lua/plenary.nvim",
-      "kyazdani42/nvim-web-devicons",
+      "nvim-tree/nvim-web-devicons",
       "MunifTanjim/nui.nvim" },
     cmd = "Neotree", -- Lazy-load the plugin only when the "Neotree" command is invoked
     keys = {

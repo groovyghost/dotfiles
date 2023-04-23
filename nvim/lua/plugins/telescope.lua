@@ -13,10 +13,6 @@ return {
       "<cmd>lua require'telescope.builtin'.grep_string{ shorten_path = true, word_match = '-w', only_sort_text = true, search = '' }<cr>",
       desc = "Fuzzy search",
     },
-    -- Git
-    { "<leader>gb", "<cmd>Telescope git_branches<cr>", desc = "Branches" },
-    { "<leader>gs", "<cmd>Telescope git_status<cr>", desc = "Status" },
-    { "<leader>gc", "<cmd>Telescope git_commits<cr>", desc = "Commits" },
     -- files
     { "<leader>ff", "<cmd>Telescope find_files<cr>", desc = "Filebrowser" },
     { "<leader>fo", "<cmd>Telescope oldfiles<cr>", desc = "Recent files" },

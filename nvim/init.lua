@@ -54,4 +54,3 @@ require("autocmd")
 require("maps")
 -- All non plugin related (vim) options
 require("options")
-

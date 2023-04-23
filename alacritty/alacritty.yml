@@ -21,6 +21,9 @@ scrolling:
   history: 10000
   multiplier: 3
 
+env:
+  TERM: xterm-256color
+
 # Font configuration (changes require restart)
 font:
   normal:

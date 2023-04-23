@@ -26,8 +26,20 @@ autocmd("InsertLeave", {
   command = "set nopaste",
 })
 
--- Clear Highlight after search
-autocmd("InsertLeave", {
-  pattern = "*",
-  command = ':let @/=""',
+-- Only highlight when searching
+vim.api.nvim_create_autocmd("CmdlineEnter", {
+   callback = function ()
+      local cmd = vim.v.event.cmdtype
+      if cmd == "/" or cmd == "?" then
+         vim.opt.hlsearch = true
+      end
+   end
+})
+vim.api.nvim_create_autocmd("CmdlineLeave", {
+   callback = function ()
+      local cmd = vim.v.event.cmdtype
+      if cmd == "/" or cmd == "?" then
+         vim.opt.hlsearch = false
+      end
+   end
 })

@@ -24,7 +24,9 @@ return {
       },
       sections = {
         lualine_a = { "mode" },
-        lualine_b = { { "branch", icon = "" }, "diff" },
+        lualine_b = { { "branch", icon = "" },
+                    { 'diff', symbols = {
+              added = ' ', modified = ' ', removed = ' ' } } },
         lualine_c = { { "filename", file_status = true, path = 0 },},
         lualine_x = { { "diagnostics",
             sources = { "nvim_diagnostic" },

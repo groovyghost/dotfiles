@@ -1,5 +1,6 @@
 return {
   "williamboman/mason.nvim", -- A friendly plugin for managing the LSP servers more easily.
+  build = ":MasonUpdate",
   cmd = "Mason", -- Lazy-load the plugin only when this command is invoked.
   dependencies = "williamboman/mason-lspconfig.nvim",
   config = function()
