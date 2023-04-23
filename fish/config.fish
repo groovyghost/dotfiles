@@ -14,7 +14,7 @@ if test -n "$exa_available"
     alias ls='exa --icons --git'
     alias ll='exa -l --icons -a --git'
 end
-
+zoxide init fish | source
 
 # The next line updates PATH for the Google Cloud SDK.
 if [ -f '/home/user/.local/bin/google-cloud-sdk/path.fish.inc' ]; . '/home/user/.local/bin/google-cloud-sdk/path.fish.inc'; end
