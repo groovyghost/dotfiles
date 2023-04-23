@@ -25,6 +25,13 @@ return {
           quit_in_show = { 'q', '<ESC>' },
         },
       },
+      lightbulb = {
+        enable = false,
+        enable_in_insert = false,
+        sign = true,
+        sign_priority = 40,
+        virtual_text = true,
+      },
       ui = {
         winblend = 10,
         border = 'rounded',
