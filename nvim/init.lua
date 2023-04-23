@@ -19,33 +19,38 @@ vim.keymap.set({ "n", "v" }, "<Space>", "<Nop>", { silent = true })
 vim.g.mapleader = " "
 
 require("lazy").setup("plugins", {
-ui = {
-  border = "rounded", -- Enable rounded borders for the "lazy.nvim" UI.
-},
-performance = {
-  rtp = {
-    disabled_plugins = { -- Disable certain in-built plugins which are useful af.
-      "2html_plugin",
-      "getscript",
-      "getscriptPlugin",
-      "gzip",
-      "logipat",
-      "netrw",
-      "netrwPlugin",
-      "netrwSettings",
-      "netrwFileHandlers",
-      "matchit",
-      "matchparen",
-      "tar",
-      "tarPlugin",
-      "rrhelper",
-      "vimball",
-      "vimballPlugin",
-      "zip",
-      "zipPlugin",
+  ui = {
+    border = "rounded", -- Enable rounded borders for the "lazy.nvim" UI.
+  },
+  change_detection = {
+    -- automatically check for config file changes and reload the ui
+    enabled = true,
+    notify = false, -- get a notification when changes are found
+  },
+  performance = {
+    rtp = {
+      disabled_plugins = { -- Disable certain in-built plugins which are useful af.
+        "2html_plugin",
+        "getscript",
+        "getscriptPlugin",
+        "gzip",
+        "logipat",
+        "netrw",
+        "netrwPlugin",
+        "netrwSettings",
+        "netrwFileHandlers",
+        "matchit",
+        "matchparen",
+        "tar",
+        "tarPlugin",
+        "rrhelper",
+        "vimball",
+        "vimballPlugin",
+        "zip",
+        "zipPlugin",
+      },
     },
   },
-},
 })
 
 -- Vim autocommands/autogroups
