@@ -6,6 +6,7 @@ shell:
     - -c
     - "tmux attach || tmux"
 window:
+  opacity: 0.97
   dimensions:
     columns: 140
     lines: 38
@@ -13,13 +14,12 @@ window:
     x: 0
     y: 0
   dynamic_padding: true
-  decorations: full
+  decorations: none
   startup_mode: Maximized
 
 scrolling:
   history: 10000
   multiplier: 3
-background_opacity: 0.97
 
 # Font configuration (changes require restart)
 font:
