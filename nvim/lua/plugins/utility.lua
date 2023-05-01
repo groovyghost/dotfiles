@@ -1,6 +1,6 @@
 return {
-  { --plugin that auto pairs & closes brackets
-    "m4xshen/autoclose.nvim",
+  { "folke/which-key.nvim", opts = {}},
+  { "m4xshen/autoclose.nvim", --plugin that auto pairs & closes brackets
     event = "VeryLazy",
     opts = {
       options = {
@@ -9,9 +9,8 @@ return {
       },
     },
   },
-  { --Smart surrounds
-    "kylechui/nvim-surround",
-    version = "*", -- Use for stability; omit to use `main` branch for the latest features
+  { "kylechui/nvim-surround", --Smart surrounds
+    version = "*",
     event = "VeryLazy",
     config = function()
       require("nvim-surround").setup({})
@@ -20,14 +19,12 @@ return {
     -- ds{motion}{char} Delete
     -- cs{target}{replacement} Change
   },
-  { --Commenting for Nvim
-    'numToStr/Comment.nvim',
+  { "numToStr/Comment.nvim", --Commenting for Nvim
     config = function()
-      require('Comment').setup()
+      require("Comment").setup()
     end
   },
-  { --Indent guides for Neovim
-    "lukas-reineke/indent-blankline.nvim",
+  { "lukas-reineke/indent-blankline.nvim", --Indent guides for Neovim
     event = { "BufReadPost", "BufNewFile" },
     opts = {
       char = "│",
@@ -35,5 +32,10 @@ return {
       show_trailing_blankline_indent = false,
       show_current_context = true,
     },
+  },
+  { "numToStr/Navigator.nvim",
+    config = function()
+      require("Navigator").setup({})
+    end
   }
 }

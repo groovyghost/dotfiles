@@ -1,5 +1,4 @@
 -- Install Lazy package manager
-
 local lazypath = vim.fn.stdpath 'data' .. '/lazy/lazy.nvim'
 if not vim.loop.fs_stat(lazypath) then
   vim.fn.system {
@@ -12,6 +11,7 @@ if not vim.loop.fs_stat(lazypath) then
   }
 end
 vim.opt.rtp:prepend(lazypath)
+vim.env.PATH = vim.fn.stdpath("data") .. "/mason/bin:" .. vim.env.PATH
 
 -- Remap space as leader key
 -- Must be before lazy
@@ -23,32 +23,12 @@ require("lazy").setup("plugins", {
     border = "rounded", -- Enable rounded borders for the "lazy.nvim" UI.
   },
   change_detection = {
-    -- automatically check for config file changes and reload the ui
-    enabled = true,
+    enabled = true, -- automatically check for config file changes and reload the ui
     notify = false, -- get a notification when changes are found
   },
   performance = {
     rtp = {
-      disabled_plugins = { -- Disable certain in-built plugins which are useful af.
-        "2html_plugin",
-        "getscript",
-        "getscriptPlugin",
-        "gzip",
-        "logipat",
-        "netrw",
-        "netrwPlugin",
-        "netrwSettings",
-        "netrwFileHandlers",
-        "matchit",
-        "matchparen",
-        "tar",
-        "tarPlugin",
-        "rrhelper",
-        "vimball",
-        "vimballPlugin",
-        "zip",
-        "zipPlugin",
-      },
+      disabled_plugins = require("settings").plugins_disabled ,
     },
   },
 })

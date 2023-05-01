@@ -1,9 +1,9 @@
 return {
-  "nvim-treesitter/nvim-treesitter",
-  build = function() -- Command to invoke after installing the plugin.
+  "nvim-treesitter/nvim-treesitter", -- Syntax highlighting
+  build = function()
     require("nvim-treesitter.install").update({ with_sync = true })
   end,
-  event = { "BufReadPost", "BufNewFile" }, -- Lazy-load the plugin only on certain events
+  event = { "BufReadPost", "BufNewFile" },
   dependencies = {
     "JoosepAlviste/nvim-ts-context-commentstring", -- Plugin for better commenting on JSX/TSX files.
     "nvim-treesitter/nvim-treesitter-textobjects", -- Navigate around code blocks more easily with this extension.
@@ -11,16 +11,16 @@ return {
     "windwp/nvim-ts-autotag", -- Extension for automatic HTML tag completion.
   },
   opts = {
-    ensure_installed = require("settings").treesitter_ensure_installed , -- Ensure the parsers for these languages are compulsarily installed
-    highlight = { enable = true }, -- Enable syntax highlighting using the Treesitter parsers
-    indent = { enable = true }, -- Enable Treesitter-based indentation
+    ensure_installed = require("settings").treesitter_installed,
+    highlight = { enable = true },
+    indent = { enable = true },
     context_commentstring = {
       enable = true,
-      enable_autocmd = false }, -- Enable easier commenting using Treesitter
-    incremental_selection = { enable = true },-- Incrementally select content powered by Treesitter
-    autotag = { enable = true }, -- Enable adding automatic HTML/JSX closing tags based on Treesitter queries
+      enable_autocmd = false },
+    incremental_selection = { enable = true },
+    autotag = { enable = true },
   },
   config = function(_, opts)
-    require("nvim-treesitter.configs").setup(opts) -- Load the plugin with the config values mentioned above
+    require("nvim-treesitter.configs").setup(opts)
   end,
 }

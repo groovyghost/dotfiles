@@ -18,7 +18,6 @@ return {
       region_check_events = "InsertEnter",
       delete_check_events = "InsertEnter",
     })
-
     cmp.setup({
       snippet = {
         expand = function(args)
@@ -94,8 +93,6 @@ return {
         }
       }
     })
-
-
     vim.cmd([[
   set completeopt=menuone,noinsert,noselect
   highlight! default link CmpItemKind CmpItemMenuDefault

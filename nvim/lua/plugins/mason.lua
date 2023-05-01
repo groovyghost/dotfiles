@@ -1,11 +1,12 @@
 return {
   "williamboman/mason.nvim", -- A friendly plugin for managing the LSP servers more easily.
   build = ":MasonUpdate",
-  cmd = "Mason", -- Lazy-load the plugin only when this command is invoked.
+  cmd = "Mason",
   dependencies = "williamboman/mason-lspconfig.nvim",
   config = function()
     require("mason").setup({
-      ui = { border = "rounded" }, -- Enable a nice-looking UI for the Mason floating window
+      PATH = "append",
+      ui = { border = "rounded" },
       log_level = vim.log.levels.INFO, -- Enable DEBUG mode when LSP things needs a bit of debugging
     })
     require("mason-lspconfig").setup({

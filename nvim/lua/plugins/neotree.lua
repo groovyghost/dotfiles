@@ -6,16 +6,6 @@ return {
       "nvim-tree/nvim-web-devicons",
       "MunifTanjim/nui.nvim" },
     cmd = "Neotree", -- Lazy-load the plugin only when the "Neotree" command is invoked
-    keys = {
-      {
-        "<leader>e", -- Press "Space + f + e" to toggle open/close the file explorer
-        function()
-          -- Open the file explorer in the current directory.
-          require("neo-tree.command").execute({ toggle = true, dir = vim.loop.cwd() })
-        end,
-        desc = "Open the Neotree file explorer",
-      },
-    },
     deactivate = function() -- Callback function to deactivate the plugin when necessary.
       vim.cmd([[ Neotree close]])
     end,
@@ -23,17 +13,14 @@ return {
       vim.g.neo_tree_remove_legacy_commands = 1
 
       if vim.fn.argc() == 1 then -- Check if there's only one file opened with Neovim.
-        -- Assign the first file opened with Neovim to the "stat" variable name.
         local stat = vim.loop.fs_stat(vim.fn.argv(0))
-
-        -- Import the "Neotree" plugin module if the "stat" variable is a "directory"
         if stat and stat.type == "directory" then
           require("neo-tree")
         end
       end
     end,
     opts = {
-      close_if_last_window = false, -- Don't leave the plugin's window open as the last window
+      close_if_last_window = true, -- Don't leave the plugin's window open as the last window
       enable_git_status = true, -- Enable Git VCS information for the current working directory
       enable_diagnostics = true, -- Enable diagnostic feedback for all files in the working directory
       filesystem = {
