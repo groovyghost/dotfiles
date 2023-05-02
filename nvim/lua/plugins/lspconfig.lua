@@ -3,7 +3,6 @@ return {
 	event = { "BufReadPre", "BufNewFile" },
 	config = function()
     local lspconfig = require ("lspconfig")
-    local protocol = require('vim.lsp.protocol')
 
     local augroup_format = vim.api.nvim_create_augroup("Format", { clear = true })
     local enable_format_on_save = function(_, bufnr)
