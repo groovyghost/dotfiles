@@ -9,7 +9,6 @@ return {
   config = function()
     local telescope = require("telescope")
     local actions = require("telescope.actions")
-    local builtin = require("telescope.builtin")
     local fb_actions = telescope.extensions.file_browser.actions
 
     telescope.setup({

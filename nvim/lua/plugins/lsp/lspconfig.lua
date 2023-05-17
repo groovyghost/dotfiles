@@ -26,46 +26,51 @@ local capabilities = require('cmp_nvim_lsp').default_capabilities()
 
 -- LSP configuration for Ansible
 lspconfig["ansiblels"].setup({
-  filetypes = {
-    "yaml",
-  },
-  settings = {
-    ansible = {
-      ansible = {
-        path = "ansible",
-        useFullyQualifiedCollectionNames = true
-      },
-      ansibleLint = {
-        enabled = true,
-        path = "ansible-lint"
-      },
-      executionEnvironment = {
-        enabled = false
-      },
-      python = {
-        interpreterPath = "python"
-      },
-      completion = {
-        provideRedirectModules = true,
-        provideModuleOptionAliases = true
-      }
-    },
-  },
+  require("plugins.lsp.settings.ansiblels"),
   on_attach = on_attach,
   capabilities = capabilities
 })
 
+-- LSP configurations for Lua
+lspconfig["lua_ls"].setup({
+  require("plugins.lsp.settings.lua_ls"),
+  on_attach = function(client, bufnr)
+    on_attach(client, bufnr)
+    enable_format_on_save(client, bufnr)
+  end,
+  capabilities = capabilities,
+})
+
+-- LSP configuration for YAML
+lspconfig["yamlls"].setup({
+  require("plugins.lsp.settings.yamlls"),
+  on_attach = on_attach,
+  capabilities = capabilities,
+})
+
 -- LSP configurations for Bash
-lspconfig["bashls"].setup({ on_attach = on_attach, capabilities = capabilities })
+lspconfig["bashls"].setup({
+  on_attach = on_attach,
+  capabilities = capabilities
+})
 
 -- LSP configurations for Dockerfile
-lspconfig["dockerls"].setup({ on_attach = on_attach, capabilities = capabilities })
+lspconfig["dockerls"].setup({
+  on_attach = on_attach,
+  capabilities = capabilities
+})
 
 --LSP configuration for JSON
-lspconfig["jsonls"].setup({ on_attach = on_attach, capabilities = capabilities })
+lspconfig["jsonls"].setup({
+  on_attach = on_attach,
+  capabilities = capabilities
+})
 
 -- LSP configuration for Markdown
-lspconfig["marksman"].setup({ on_attach = on_attach, capabilities = capabilities })
+lspconfig["marksman"].setup({
+  on_attach = on_attach,
+  capabilities = capabilities
+})
 
 -- LSP configurations for Python
 lspconfig["pyright"].setup({
@@ -73,36 +78,10 @@ lspconfig["pyright"].setup({
   capabilities = capabilities
 })
 
--- LSP configurations for Lua
-lspconfig["lua_ls"].setup({
-  on_attach = function(client, bufnr)
-    on_attach(client, bufnr)
-    enable_format_on_save(client, bufnr)
-  end,
-  capabilities = capabilities,
-  settings = {
-    Lua = {
-      format = { enable = false },                         -- Disable the LSP-based formatting
-      diagnostics = {
-        globals = { "vim" } },                             -- Disable Lua diagnostics since it interferes with Selene
-      workspace = {
-        library = vim.api.nvim_get_runtime_file("", true), -- Load the Neovim runtime files for usage during Neovim configuration
-        checkThirdParty = false
-      },                                                   -- Disable checking for 3rd-party libraries
-      telemetry = { enable = false },
-    },
-  },
-})
 -- LSP configuration for Terraform
-lspconfig["terraformls"].setup({ on_attach = on_attach, capabilities = capabilities })
-
--- LSP configuration for YAML
-lspconfig["yamlls"].setup({
+lspconfig["terraformls"].setup({
   on_attach = on_attach,
-  capabilities = capabilities,
-  settings = {
-    yaml = { keyOrdering = false },
-  },
+  capabilities = capabilities
 })
 
 vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
@@ -113,7 +92,6 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
     severity_sort = true,
   }
 )
-
 -- Diagnostic symbols in the sign column (gutter)
 local signs = { Error = " ", Warn = " ", Hint = " ", Info = " " }
 for type, icon in pairs(signs) do

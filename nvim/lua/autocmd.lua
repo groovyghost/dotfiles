@@ -43,3 +43,17 @@ autocmd("CmdlineLeave", {
       end
    end
 })
+
+-- Detect ansible files
+autocmd("BufRead,BufNewFile", {
+  pattern = {
+    "**/playbooks/*.yml",
+    "**/ansible/*.yml",
+    "**/roles/*/tasks/*.yml",
+    "**/roles/*/defaults/*.yml",
+    "**/roles/*/handlers/*.yml",
+  },
+  callback = function()
+    vim.opt.ft = "yaml.ansible"
+  end,
+})
