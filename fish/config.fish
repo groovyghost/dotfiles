@@ -6,7 +6,7 @@ set fish_greeting
 export EDITOR=nvim || export EDITOR=vim
 source $HOME/.config/fish/shortcuts.fish
 source $HOME/.config/fish/colors.fish
-set -gx PATH $HOME/.local/bin $HOME/.local/bin/go/bin /usr/local/bin $HOME/.cargo/bin $PATH
+set -gx PATH $HOME/.local/bin $HOME/.local/bin/go/bin /usr/local/bin $HOME/.cargo/bin $HOME/.local/gradle/bin $PATH
 set fish_color_valid_path --bold
 
 set -l exa_available (which exa)

@@ -1,18 +1,18 @@
 # Configuration for Alacritty, the GPU enhanced terminal emulator.
 shell:
-  program: /usr/bin/fish
+  program: /usr/bin/zsh
   args:
     - -l
     - -c
     - "tmux attach || tmux"
 window:
-  opacity: 0.97
+  #opacity: 0.97
   dimensions:
     columns: 140
     lines: 38
   padding:
-    x: 5
-    y: 5
+    x: 7
+    y: 7
   dynamic_padding: true
   decorations: none
   startup_mode: Maximized
@@ -22,14 +22,16 @@ scrolling:
   multiplier: 3
 
 env:
-  TERM: xterm-256color
+   TERM: xterm-256color
+   LC_ALL: en_US.UTF-8
+   LANG: en_US.UTF-8
 
 # Font configuration (changes require restart)
 font:
   normal:
-    family: JetBrainsMono Nerd Font
+    family: ComicShannsMono Nerd Font
     style: Regular
-  size: 12.0
+  size: 14.0
   offset:
     x: 0
     y: 0

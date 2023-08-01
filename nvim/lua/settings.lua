@@ -47,6 +47,7 @@ M.lsp_servers = {
   "jsonls",
   "lua_ls",
   "marksman",
+  "pyright",
   "terraformls",
   "yamlls",
 }
