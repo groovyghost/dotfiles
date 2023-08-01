@@ -1,8 +1,7 @@
 .netrwhist
 fish_history
-search-history
-command-history
 *.swp
 swap
 fish/fish_variables
-tmux/plugins
+zsh/.zcompdump
+zsh/.zsh_history
