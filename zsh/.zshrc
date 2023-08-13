@@ -29,7 +29,8 @@ setopt interactivecomments
 PLUGINS=(git
   zsh-autosuggestions
   key-bindings
-  fast-syntax-highlighting/fast-syntax-highlighting.plugin)
+  fast-syntax-highlighting/fast-syntax-highlighting.plugin
+  zsh-autopair/autopair)
 
 for plugin in "${PLUGINS[@]}"; do
   if [[ -f "$ZDOTDIR"/plugins/"$plugin".zsh ]]; then
@@ -46,4 +47,5 @@ source "$ZDOTDIR"/zsh_alias
 autoload -Uz compinit
 [ ! "$(find ~/.config/zsh/.zcompdump -mtime 1)" ] || compinit
 compinit -C
+autopair-init
 # zprof
