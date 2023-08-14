@@ -1,30 +1,37 @@
-#zmodload zsh/zprof # For Profiling ZSH begin
-
-export EDITOR=nvim || export EDITOR=vim
-export PATH=/opt/homebrew/bin:$HOME/.local/bin:$HOME/.local/bin/go/bin:$HOME/.cargo/bin:$HOME/.local/gradle/bin:$PATH
+export EDITOR="nvim"
+export VISUAL="nvim"
+export BROWSER="brave-browser"
 export HISTFILE=$ZDOTDIR/.zsh_history
-# commands zsh will load to memory.
+export PATH=/opt/homebrew/bin:$HOME/.local/bin:$HOME/.local/bin/go/bin:$HOME/.cargo/bin:$HOME/.local/gradle/bin:$PATH
 export HISTSIZE=10000
-# How many commands history will save on file.
 export SAVEHIST=10000
-# History won't save duplicates.
-setopt HIST_IGNORE_ALL_DUPS
-# History won't show duplicates on search.
-setopt HIST_FIND_NO_DUPS
-# For Prompt
-# Load colors for zsh
+
 autoload -Uz colors && colors
+
+setopt HIST_IGNORE_ALL_DUPS # No duplicates in history
+setopt HIST_FIND_NO_DUPS # No duplicates in history
 setopt prompt_subst
-# Robbyrussell
+setopt auto_cd # cd with path only
+setopt interactivecomments # bash style comments
+
+parse_git_status() {
+  STATUS="$(git status 2> /dev/null)"
+  if [[ $? -ne 0 ]]; then printf ""; return; fi
+  if echo "${STATUS}" | grep -c "renamed:"          &> /dev/null; then printf "󰅬 "; else printf ""; fi
+  if echo "${STATUS}" | grep -c "branch is ahead:"  &> /dev/null; then printf " "; else printf ""; fi
+  if echo "${STATUS}" | grep -c "new file:"         &> /dev/null; then printf " "; else printf ""; fi
+  if echo "${STATUS}" | grep -c "Untracked files:"  &> /dev/null; then printf " "; else printf ""; fi
+  if echo "${STATUS}" | grep -c "deleted:"          &> /dev/null; then printf " "; else printf ""; fi
+  if echo "${STATUS}" | grep -c "modified:"         &> /dev/null; then printf "󱨧 "; else printf ""; fi
+}
+
+parse_git_branch(){
+  git rev-parse --abbrev-ref HEAD 2> /dev/null
+}
+
 PROMPT="%(?:%{$fg_bold[green]%}➜ :%{$fg_bold[red]%}➜ ) %{$fg[cyan]%}%c%{$reset_color%} "
-RPROMPT='%{$fg_bold[green]%} $(git_prompt_info)%{$reset_color%}'
-ZSH_THEME_GIT_PROMPT_DIRTY=" %{$fg[yellow]%}✗"
-# Enable completion for smaller case letters
-zstyle ':completion:*' matcher-list '' 'm:{[:lower:][:upper:]}={[:upper:][:lower:]}' 'r:|[._-.]=** r:|=**'
-# Run cd automatically when a path is typed
-setopt auto_cd
-# allows you to type Bash style comments on your command line
-setopt interactivecomments
+RPROMPT='%{$fg_bold[green]%}$(parse_git_branch) %{$fg[yellow]%}$(parse_git_status)%{$reset_color%}'
+
 # Plugin list to be sources
 PLUGINS=(git
   zsh-autosuggestions
@@ -39,6 +46,7 @@ for plugin in "${PLUGINS[@]}"; do
     printf "\033[1;31m "$plugin" Plugin - not found\033[0m\n"
   fi
 done
+
 fpath=("$ZDOTDIR"/completions $fpath)
 # Source zoxide & aliases
 eval "$(zoxide init zsh)"
