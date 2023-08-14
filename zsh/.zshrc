@@ -36,7 +36,7 @@ RPROMPT='%{$fg_bold[green]%}$(parse_git_branch) %{$fg[yellow]%}$(parse_git_statu
 PLUGINS=(zsh-autosuggestions
   key-bindings
   fast-syntax-highlighting/fast-syntax-highlighting.plugin
-  zsh-autopair/autopair)
+  autopair)
 
 for plugin in "${PLUGINS[@]}"; do
   if [[ -f "$ZDOTDIR"/plugins/"$plugin".zsh ]]; then
