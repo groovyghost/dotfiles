@@ -33,8 +33,7 @@ PROMPT="%(?:%{$fg_bold[green]%}➜ :%{$fg_bold[red]%}➜ ) %{$fg[cyan]%}%c%{$res
 RPROMPT='%{$fg_bold[green]%}$(parse_git_branch) %{$fg[yellow]%}$(parse_git_status)%{$reset_color%}'
 
 # Plugin list to be sources
-PLUGINS=(git
-  zsh-autosuggestions
+PLUGINS=(zsh-autosuggestions
   key-bindings
   fast-syntax-highlighting/fast-syntax-highlighting.plugin
   zsh-autopair/autopair)
