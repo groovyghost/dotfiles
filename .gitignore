@@ -5,3 +5,4 @@ swap
 fish/fish_variables
 zsh/.zcompdump
 zsh/.zsh_history
+.luarc.json

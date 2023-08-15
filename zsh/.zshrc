@@ -16,7 +16,7 @@ setopt interactivecomments # bash style comments
 
 parse_git_status() {
   STATUS="$(git status 2> /dev/null)"
-  if [[ $? -ne 0 ]]; then printf ""; return; fi
+  if [[ $? -ne 0 ]]; then return; fi
   if echo "${STATUS}" | grep -c "renamed:"          &> /dev/null; then printf "󰅬 "; else printf ""; fi
   if echo "${STATUS}" | grep -c "branch is ahead:"  &> /dev/null; then printf " "; else printf ""; fi
   if echo "${STATUS}" | grep -c "new file:"         &> /dev/null; then printf " "; else printf ""; fi

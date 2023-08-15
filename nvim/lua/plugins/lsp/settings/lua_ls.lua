@@ -1,5 +1,4 @@
 return {
-  settings = {
     Lua = {
       format = { enable = false },                         -- Disable the LSP-based formatting
       diagnostics = {
@@ -10,5 +9,4 @@ return {
       },                                                   -- Disable checking for 3rd-party libraries
       telemetry = { enable = false },
     },
-  },
 }

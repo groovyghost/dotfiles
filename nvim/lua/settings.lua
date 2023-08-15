@@ -40,18 +40,6 @@ M.treesitter_installed = {
   "yaml",
 }
 
-M.lsp_servers = {
-  "ansiblels",
-  "bashls",
-  "dockerls",
-  "jsonls",
-  "lua_ls",
-  "marksman",
-  "pyright",
-  "terraformls",
-  "yamlls",
-}
-
 M.tools_installed = {
   -- Formatter
   "black",

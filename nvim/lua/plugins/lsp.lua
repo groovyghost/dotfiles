@@ -2,6 +2,17 @@ return {
   {
     "neovim/nvim-lspconfig",
     event = { "BufReadPre", "BufNewFile" },
+    dependencies = {
+      { 'williamboman/mason.nvim', config = true },
+      'williamboman/mason-lspconfig.nvim',
+      {
+        'j-hui/fidget.nvim',
+        tag = "legacy",
+        event = "LspAttach",
+        opts = { window = { blend = 0 } }
+      },
+      'folke/neodev.nvim'
+    },
     config = function()
       require "plugins.lsp.lspconfig"
     end
@@ -15,20 +26,13 @@ return {
     end,
   },
   {
-    "williamboman/mason.nvim", -- A friendly plugin for managing the LSP servers more easily.
-    build = ":MasonUpdate",
-    cmd = "Mason",
-    dependencies = "williamboman/mason-lspconfig.nvim",
+    "jay-babu/mason-null-ls.nvim",
+    event = { "BufReadPre", "BufNewFile" },
+    dependencies = {
+      "jose-elias-alvarez/null-ls.nvim",
+    },
     config = function()
-      require("mason").setup({
-        PATH = "append",
-        ui = { border = "rounded" },
-        log_level = vim.log.levels.INFO, -- Enable DEBUG mode when LSP things needs a bit of debugging
-      })
-      require("mason-lspconfig").setup({
-        ensure_installed = require("settings").lsp_servers,
-        automatic_installation = true,
-      })
+      require("plugins.lsp.null-ls")
     end,
   }
 }

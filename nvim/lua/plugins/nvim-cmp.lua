@@ -93,10 +93,6 @@ return {
         }
       }
     })
-    vim.cmd([[
-  set completeopt=menuone,noinsert,noselect
-  highlight! default link CmpItemKind CmpItemMenuDefault
-]])
     -- Disable certain capabilities when working on Markdown files.
     cmp.setup.filetype({ "markdown" }, { sources = { name = "buffer" } })
   end

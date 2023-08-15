@@ -1,88 +1,79 @@
-local lspconfig = require ("lspconfig")
+-- Diagnostic keymaps
+vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, { desc = 'Go to previous diagnostic message' })
+vim.keymap.set('n', ']d', vim.diagnostic.goto_next, { desc = 'Go to next diagnostic message' })
+-- vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, { desc = 'Open floating diagnostic message' })
+-- vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostics list' })
+local on_attach = function(_, bufnr)
+  local nmap = function(keys, func, desc)
+    if desc then
+      desc = 'LSP: ' .. desc
+    end
 
-local augroup_format = vim.api.nvim_create_augroup("Format", { clear = true })
-local enable_format_on_save = function(_, bufnr)
-  vim.api.nvim_clear_autocmds({ group = augroup_format, buffer = bufnr })
-  vim.api.nvim_create_autocmd("BufWritePre", {
-    group = augroup_format,
-    buffer = bufnr,
-    callback = function()
-      vim.lsp.buf.format({ bufnr = bufnr })
-    end,
-  })
+    vim.keymap.set('n', keys, func, { buffer = bufnr, desc = desc })
+  end
+
+  nmap('<leader>rn', vim.lsp.buf.rename, '[R]e[n]ame')
+  nmap('<leader>ca', vim.lsp.buf.code_action, '[C]ode [A]ction')
+
+  nmap('gd', vim.lsp.buf.definition, '[G]oto [D]efinition')
+  nmap('gr', require('telescope.builtin').lsp_references, '[G]oto [R]eferences')
+  nmap('gI', vim.lsp.buf.implementation, '[G]oto [I]mplementation')
+  nmap('<leader>D', vim.lsp.buf.type_definition, 'Type [D]efinition')
+  nmap('<leader>ds', require('telescope.builtin').lsp_document_symbols, '[D]ocument [S]ymbols')
+  nmap('<leader>ws', require('telescope.builtin').lsp_dynamic_workspace_symbols, '[W]orkspace [S]ymbols')
+
+  -- See `:help K` for why this keymap
+  nmap('K', vim.lsp.buf.hover, 'Hover Documentation')
+  nmap('<C-k>', vim.lsp.buf.signature_help, 'Signature Documentation')
+
+  -- Lesser used LSP functionality
+  nmap('gD', vim.lsp.buf.declaration, '[G]oto [D]eclaration')
+  nmap('<leader>wa', vim.lsp.buf.add_workspace_folder, '[W]orkspace [A]dd Folder')
+  nmap('<leader>wr', vim.lsp.buf.remove_workspace_folder, '[W]orkspace [R]emove Folder')
+  nmap('<leader>wl', function()
+    print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
+  end, '[W]orkspace [L]ist Folders')
+
+  -- Create a command `:Format` local to the LSP buffer
+  vim.api.nvim_buf_create_user_command(bufnr, 'Format', function(_)
+    vim.lsp.buf.format()
+  end, { desc = 'Format current buffer with LSP' })
 end
--- Use an on_attach function to only map the following keys
--- after the language server attaches to the current buffer
-local on_attach = function(client, bufnr)
-  local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
-  local opts = { noremap = true, silent = true }
-  -- See `:help vim.lsp.*` for documentation on any of the below functions
-  buf_set_keymap('n', 'gD', '<Cmd>lua vim.lsp.buf.declaration()<CR>', opts)
-  buf_set_keymap('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
-end
 
--- Set up completion using nvim_cmp with LSP source
-local capabilities = require('cmp_nvim_lsp').default_capabilities()
 
--- LSP configuration for Ansible
-lspconfig["ansiblels"].setup({
-  require("plugins.lsp.settings.ansiblels"),
-  on_attach = on_attach,
-  capabilities = capabilities
-})
+local servers = {
+  ansiblels = { require("plugins.lsp.settings.ansiblels") },
+  bashls = {},
+  dockerls = {},
+  jsonls = {},
+  pyright = {},
+  lua_ls = { require("plugins.lsp.settings.lua_ls") },
+  marksman = {},
+  terraformls = {},
+  yamlls = { require("plugins.lsp.settings.yamlls") },
+}
 
--- LSP configurations for Lua
-lspconfig["lua_ls"].setup({
-  require("plugins.lsp.settings.lua_ls"),
-  on_attach = function(client, bufnr)
-    on_attach(client, bufnr)
-    enable_format_on_save(client, bufnr)
-  end,
-  capabilities = capabilities,
-})
+require("neodev").setup()
 
--- LSP configuration for YAML
-lspconfig["yamlls"].setup({
-  require("plugins.lsp.settings.yamlls"),
-  on_attach = on_attach,
-  capabilities = capabilities,
-})
+local capabilities = vim.lsp.protocol.make_client_capabilities()
+capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
 
--- LSP configurations for Bash
-lspconfig["bashls"].setup({
-  on_attach = on_attach,
-  capabilities = capabilities
-})
+local mason_lspconfig = require 'mason-lspconfig'
 
--- LSP configurations for Dockerfile
-lspconfig["dockerls"].setup({
-  on_attach = on_attach,
-  capabilities = capabilities
-})
+mason_lspconfig.setup {
+  ensure_installed = vim.tbl_keys(servers),
+}
 
---LSP configuration for JSON
-lspconfig["jsonls"].setup({
-  on_attach = on_attach,
-  capabilities = capabilities
-})
-
--- LSP configuration for Markdown
-lspconfig["marksman"].setup({
-  on_attach = on_attach,
-  capabilities = capabilities
-})
-
--- LSP configurations for Python
-lspconfig["pyright"].setup({
-  on_attach = on_attach,
-  capabilities = capabilities
-})
-
--- LSP configuration for Terraform
-lspconfig["terraformls"].setup({
-  on_attach = on_attach,
-  capabilities = capabilities
-})
+mason_lspconfig.setup_handlers {
+  function(server_name)
+    require('lspconfig')[server_name].setup {
+      capabilities = capabilities,
+      on_attach = on_attach,
+      settings = servers[server_name],
+      filetypes = (servers[server_name] or {}).filetypes,
+    }
+  end
+}
 
 vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
   vim.lsp.diagnostic.on_publish_diagnostics, {
@@ -95,8 +86,8 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
 -- Diagnostic symbols in the sign column (gutter)
 local signs = { Error = " ", Warn = " ", Hint = " ", Info = " " }
 for type, icon in pairs(signs) do
-local hl = "DiagnosticSign" .. type
-vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
+  local hl = "DiagnosticSign" .. type
+  vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
 end
 
 vim.diagnostic.config({
@@ -104,7 +95,7 @@ vim.diagnostic.config({
     prefix = '●'
   },
   update_in_insert = true,
-float = {
-  source = "always", -- Or "if_many"
+  float = {
+    source = "always", -- Or "if_many"
   },
 })
