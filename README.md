@@ -12,7 +12,7 @@ Heavily focused on a terminal based and keyboard centric workflow  ⌨️
 - [ ZSH ](https://github.com/groovyghost/dotfiles/tree/main/zsh)
 - [ Alacritty ](https://github.com/groovyghost/dotfiles/tree/main/alacritty)
 - [ Tmux ](https://github.com/groovyghost/dotfiles/tree/main/tmux)
-
+- [ Fish ](https://github.com/groovyghost/dotfiles/tree/main/fish) -  Abandoned
 <h3 align="center">
     📸 Screenshot
 </h3>
