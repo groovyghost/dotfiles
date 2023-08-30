@@ -1,16 +1,16 @@
 return {
   'hrsh7th/nvim-cmp',
-  dependencies =  {
+  dependencies = {
     'hrsh7th/cmp-nvim-lsp',
     'hrsh7th/cmp-buffer',
     'hrsh7th/cmp-path',
     'L3MON4D3/LuaSnip',
     'rafamadriz/friendly-snippets',
-    'onsails/lspkind.nvim'},
+    'onsails/lspkind.nvim' },
   event = "InsertEnter",
   config = function()
-    local cmp = require ("cmp")
-    local luasnip =require ("luasnip")
+    local cmp = require("cmp")
+    local luasnip = require("luasnip")
     local lspkind = require("lspkind")
     require("luasnip/loaders/from_vscode").lazy_load()
     require("luasnip.loaders.from_snipmate").lazy_load { paths = vim.fn.stdpath "config" .. "/snippets/snipmate" }
@@ -47,9 +47,9 @@ return {
             fallback()
           end
         end, {
-            "i",
-            "s",
-          }),
+          "i",
+          "s",
+        }),
         ["<C-k>"] = cmp.mapping(function(fallback)
           if cmp.visible() then
             cmp.select_prev_item()
@@ -59,9 +59,9 @@ return {
             fallback()
           end
         end, {
-            "i",
-            "s",
-          }),
+          "i",
+          "s",
+        }),
       }),
       sources = cmp.config.sources({
         { name = "nvim_lsp" },
@@ -73,7 +73,7 @@ return {
       formatting = {
         format = lspkind.cmp_format({
           mode = "symbol", -- show only symbol annotations
-          maxwidth = 50, -- prevent the popup from showing more than provided characters (e.g 50 will not show more than 50 characters)
+          maxwidth = 50,   -- prevent the popup from showing more than provided characters (e.g 50 will not show more than 50 characters)
         }),
       },
       window = {
