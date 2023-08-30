@@ -26,11 +26,6 @@ require("lazy").setup("plugins", {
     enabled = true, -- automatically check for config file changes and reload the ui
     notify = false, -- get a notification when changes are found
   },
-  performance = {
-    rtp = {
-      disabled_plugins = require("settings").plugins_disabled ,
-    },
-  },
 })
 
 -- Vim autocommands/autogroups

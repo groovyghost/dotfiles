@@ -18,7 +18,7 @@ autocmd("BufWritePre", {
 })
 
 -- Don't auto commenting new lines
-autocmd("BufEnter", { command = [[set formatoptions-=cro]] })
+autocmd("BufEnter", { command = [[set formatoptions=cro]] })
 
 -- Turn off paste mode when leaving insert
 autocmd("InsertLeave", {
@@ -28,20 +28,20 @@ autocmd("InsertLeave", {
 
 -- Only highlight when searching
 autocmd("CmdlineEnter", {
-   callback = function ()
-      local cmd = vim.v.event.cmdtype
-      if cmd == "/" or cmd == "?" then
-         vim.opt.hlsearch = true
-      end
-   end
+  callback = function()
+    local cmd = vim.v.event.cmdtype
+    if cmd == "/" or cmd == "?" then
+      vim.opt.hlsearch = true
+    end
+  end
 })
 autocmd("CmdlineLeave", {
-   callback = function ()
-      local cmd = vim.v.event.cmdtype
-      if cmd == "/" or cmd == "?" then
-         vim.opt.hlsearch = false
-      end
-   end
+  callback = function()
+    local cmd = vim.v.event.cmdtype
+    if cmd == "/" or cmd == "?" then
+      vim.opt.hlsearch = false
+    end
+  end
 })
 
 -- Detect ansible files
