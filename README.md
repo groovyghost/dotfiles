@@ -17,7 +17,7 @@ Heavily focused on a terminal based and keyboard centric workflow  ⌨️
     📸 Screenshot
 </h3>
 
-![Screensot](https://raw.githubusercontent.com/groovyghost/dotfiles/main/.github/neovim.png)
+![](./github/neovim.png)
 
 <p align="center"><img src="https://raw.githubusercontent.com/groovyghost/dotfiles/main/.github/footer.svg" /></p>
 <p align="center"><a href="https://github.com/groovyghost/dotfiles/blob/main/LICENSE"><img src="https://img.shields.io/static/v1.svg?style=for-the-badge&label=License&message=MIT&logoColor=d9e0ee&colorA=302d41&colorB=b7bdf8"/></a></p>
