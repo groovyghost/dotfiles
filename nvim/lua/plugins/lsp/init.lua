@@ -3,8 +3,6 @@ return {
     "neovim/nvim-lspconfig",
     event = { "BufReadPre", "BufNewFile" },
     dependencies = {
-      { 'williamboman/mason.nvim', config = true },
-      'williamboman/mason-lspconfig.nvim',
       "hrsh7th/cmp-nvim-lsp",
     },
     config = function()
@@ -12,11 +10,27 @@ return {
     end
   },
   {
-    "jay-babu/mason-null-ls.nvim",
-    event = { "BufReadPre", "BufNewFile" },
+    "williamboman/mason.nvim",
     dependencies = {
-      "jose-elias-alvarez/null-ls.nvim",
+      "williamboman/mason-lspconfig.nvim",
+      "jayp0521/mason-null-ls.nvim",
     },
+    config = function()
+      require("mason").setup({
+        ui = {
+          icons = {
+            package_installed = "✓",
+            package_pending = "➜",
+            package_uninstalled = "✗"
+          }
+        }
+      })
+    end
+  }
+  ,
+  {
+    "jose-elias-alvarez/null-ls.nvim",
+    event = { "BufReadPre", "BufNewFile" },
     config = function()
       require("plugins.lsp.null-ls")
     end,
