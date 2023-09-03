@@ -2,15 +2,6 @@ return {
   { 'lewis6991/gitsigns.nvim', opts = {} },
   { "folke/which-key.nvim",    opts = {} },
   {
-    "windwp/nvim-autopairs", --plugin that auto pairs & closes brackets
-    event = "InsertEnter",
-    opts = {
-      options = {
-        disable_filetype = { "text", "markdown" },
-      },
-    },
-  },
-  {
     "tpope/vim-surround",
     event = "BufEnter",
     -- ys{motion}{char} Add
