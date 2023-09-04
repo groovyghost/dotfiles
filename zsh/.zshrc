@@ -35,9 +35,6 @@ for plugin in "${PLUGINS[@]}"; do
   fi
 done
 
-# Completions path
-fpath=("$ZDOTDIR"/completions $fpath)
-
 # Source zoxide & aliases
 eval "$(zoxide init zsh)"
 source "$ZDOTDIR"/alias.zsh
