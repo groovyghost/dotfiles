@@ -13,6 +13,7 @@ require("mason-null-ls").setup({
 null_ls.setup({
   sources = {
     null_ls.builtins.code_actions.shellcheck,
+    null_ls.builtins.formatting.shfmt,
     null_ls.builtins.formatting.black,
     null_ls.builtins.formatting.terraform_fmt,
     null_ls.builtins.formatting.shfmt,

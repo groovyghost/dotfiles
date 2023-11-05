@@ -10,7 +10,7 @@ export HISTSIZE=10000
 export SAVEHIST=10000
 
 # Path config
-export PATH=/opt/homebrew/bin:$HOME/.local/bin:$HOME/.local/bin/go/bin:$HOME/.cargo/bin:$HOME/.local/gradle/bin:$PATH
+export PATH=$PATH:$HOME/.local/bin:$HOME/.local/bin/go/bin:$HOME/.cargo/bin:$HOME/.local/gradle/bin:$HOME/.local/bin/istio-1.19.0/bin:$HOME/.pulumi/bin
 
 # Some zsh options
 autoload -Uz colors && colors
