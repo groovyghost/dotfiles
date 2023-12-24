@@ -1,74 +1,103 @@
+-- Auto-completion setup using nvim-cmp
 return {
-  "hrsh7th/nvim-cmp",
-  event = "InsertEnter",
+  "hrsh7th/nvim-cmp",  -- Use nvim-cmp for completion
+
   dependencies = {
-    "hrsh7th/cmp-buffer",       -- source for text in buffer
-    "hrsh7th/cmp-path",         -- source for file system paths
-    "L3MON4D3/LuaSnip",         -- snippet engine
-    "saadparwaiz1/cmp_luasnip", -- for autocompletion
-    -- "rafamadriz/friendly-snippets", -- useful snippets
-    "honza/vim-snippets",
-    "onsails/lspkind.nvim", -- vs-code like pictograms
+    "L3MON4D3/LuaSnip",               --> VS Code style snippet engine
+    "saadparwaiz1/cmp_luasnip",       --> Provide Luasnip as one of nvim-cmp sources
+    "hrsh7th/cmp-nvim-lsp",           --> nvim-cmp source for LSP engine
+    "hrsh7th/cmp-buffer",             --> nvim-cmp source for buffer words
+    "hrsh7th/cmp-path",               --> nvim-cmp source for file path
+    "rafamadriz/friendly-snippets",   --> Snippet collections
   },
+
   config = function()
     local cmp = require("cmp")
-
     local luasnip = require("luasnip")
 
-    local lspkind = require("lspkind")
+    -- Completion icons for different kinds of items
+    local kind_icons = {
+      Text = "",
+      Method = "󰆧",
+      Function = "󰊕",
+      Constructor = "",
+      Field = "󰇽",
+      Variable = "󰂡",
+      Class = "󰠱",
+      Interface = "",
+      Module = "",
+      Property = "󰜢",
+      Unit = "",
+      Value = "󰎠",
+      Enum = "",
+      Keyword = "󰌋",
+      Snippet = "",
+      Color = "󰏘",
+      File = "󰈙",
+      Reference = "",
+      Folder = "󰉋",
+      EnumMember = "",
+      Constant = "󰏿",
+      Struct = "",
+      Event = "",
+      Operator = "󰆕",
+      TypeParameter = "󰅲",
+    }
 
-    -- loads vscode style snippets from installed plugins (e.g. friendly-snippets)
-    require("luasnip.loaders.from_snipmate").lazy_load()
+    -- Lazy load Luasnip from VSCode snippets
+    require("luasnip.loaders.from_vscode").lazy_load()
+    luasnip.config.setup({})
+
+    -- Configure nvim-cmp
     cmp.setup({
-      completion = {
-        completeopt = "menu,menuone,preview,noselect",
-      },
-      snippet = { -- configure how nvim-cmp interacts with snippet engine
+      snippet = {
         expand = function(args)
           luasnip.lsp_expand(args.body)
         end,
       },
       mapping = cmp.mapping.preset.insert({
-        ["<C-k>"] = cmp.mapping.select_prev_item(), -- previous suggestion
-        ["<C-j>"] = cmp.mapping.select_next_item(), -- next suggestion
+        ["<C-k>"] = cmp.mapping.select_prev_item(),  -- Previous suggestion
+        ["<C-j>"] = cmp.mapping.select_next_item(),  -- Next suggestion
         ["<C-b>"] = cmp.mapping.scroll_docs(-4),
         ["<C-f>"] = cmp.mapping.scroll_docs(4),
-        ["<Tab>"] = cmp.mapping(function(fallback) --next placeholder
-          if luasnip.expand_or_jumpable() then
-            luasnip.expand_or_jump()
-          else
-            fallback()
-          end
-        end),
-        ["<S-Tab>"] = cmp.mapping(function(fallback) --previous placeholder
-          if luasnip.jumpable(-1) then
-            luasnip.jump(-1)
-          else
-            fallback()
-          end
-        end),
-        ["<C-Space>"] = cmp.mapping.complete(), -- show completion suggestions
-        ["<C-e>"] = cmp.mapping.abort(),        -- close completion window
+        ["<C-Space>"] = cmp.mapping.complete(),      -- Show completion suggestions
+        ["<C-e>"] = cmp.mapping.abort(),             -- Close completion window
         ["<CR>"] = cmp.mapping.confirm({ select = false }),
       }),
-      -- sources for autocompletion
-      sources = cmp.config.sources({
-        { name = "luasnip" },  -- snippets
-        { name = "nvim_lsp" }, --lsp
-        { name = "buffer" },   -- text within current buffer
-        { name = "path" },     -- file system paths
-      }),
-      -- configure lspkind for vs-code like pictograms in completion menu
-      formatting = {
-        format = lspkind.cmp_format({
-          maxwidth = 50,
-          ellipsis_char = "...",
-        }),
+      sources = cmp.config.sources(
+        {
+          { name = "nvim_lsp" },  -- LSP as a source
+          { name = "luasnip" },   -- Luasnip as a source
+        },
+        {
+          { name = "buffer" },    -- Buffer words as a source
+          { name = "path" },      -- File path as a source
+        }
+      ),
+
+      -- UI customization
+      window = {
+        completion = cmp.config.window.bordered(),
+        documentation = cmp.config.window.bordered(),
       },
-      -- window = {
-      --   completion = cmp.config.window.bordered(),
-      --   documentation = cmp.config.window.bordered(),
-      -- },
+      -- Completion formatting
+      formatting = {
+        format = function(entry, vim_item)
+          -- Append kind icons
+          vim_item.kind = string.format("%s %s", kind_icons[vim_item.kind], vim_item.kind)
+
+          -- Source
+          vim_item.menu = ({
+            nvim_lsp = "[LSP]",
+            luasnip = "[LuaSnip]",
+            buffer = "[Buffer]",
+            path = "[Path]",
+          })[entry.source.name]
+
+          return vim_item
+        end
+      },
     })
-  end,
+  end
 }
+
