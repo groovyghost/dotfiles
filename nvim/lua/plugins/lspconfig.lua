@@ -83,11 +83,6 @@ return {
     vim.keymap.set("n", "<leader>o", ":Lspsaga outline<CR>", { desc = "Open Symbols [O]utline" })
     -- Define the on_attach function to be executed when attaching LSP to a buffer
     local on_attach = function(_, bufnr)
-      -- Create a user command for formatting the current buffer with LSP
-      vim.api.nvim_buf_create_user_command(bufnr, "Format", function(_)
-        vim.lsp.buf.format()
-      end, { desc = "Format current buffer with LSP" })
-
       -- Helper function for creating buffer-scope LSP keymaps with descriptions
       local nmap = function(keys, func, desc)
         if desc then
@@ -97,7 +92,6 @@ return {
       end
 
       -- Define key mappings for common LSP actions
-      nmap("<leader>F", vim.lsp.buf.format, "[F]ormat")
       nmap("<leader>rn", ":Lspsaga rename<CR>", "[R]e[n]ame")
       nmap("<leader>ca", ":Lspsaga code_action<CR>", "[C]ode [A]ction")
       nmap("<leader>h", ":Lspsaga hover_doc<CR>", "[H]over Documentation")
@@ -115,7 +109,23 @@ return {
     -- Define LSP servers and their configurations
     local servers = {
       bashls = {},
-      pyright = {},
+      pylsp = {
+        pylsp = {
+          plugins = {
+            -- formatter options
+            autopep8 = { enabled = true },
+            -- linter options
+            pyflakes = { enabled = true },
+            -- type checker
+            pylsp_mypy = { enabled = false },
+            -- auto-completion options
+            jedi_completion = { fuzzy = true },
+            -- import sorting
+            rope_autoimport = { enabled = true },
+            pyls_isort = { enabled = true },
+          },
+        },
+      },
       lua_ls = {
         Lua = {
           diagnostics = { globals = { 'vim' } },

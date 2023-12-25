@@ -78,7 +78,7 @@ api.nvim_create_autocmd("BufReadPost", {
 
 -- Close windows with "q" for specific file types
 api.nvim_create_autocmd("FileType", {
-  pattern = { "help", "man", "notify","sagaoutline", "qf", "PlenaryTestPopup" },
+  pattern = { "help", "man", "notify", "sagaoutline", "sagacodeaction", "qf", "PlenaryTestPopup" },
   callback = function(event)
     vim.bo[event.buf].buflisted = false
     vim.keymap.set("n", "q", "<cmd>close<cr>", { buffer = event.buf, silent = true })
@@ -96,8 +96,8 @@ vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
 -- Remap for dealing with visual line wraps
-map( "n", "k", "v:count == 0 ? 'gk' : 'k'", { expr = true })
-map( "n", "j", "v:count == 0 ? 'gj' : 'j'", { expr = true })
+map("n", "k", "v:count == 0 ? 'gk' : 'k'", { expr = true })
+map("n", "j", "v:count == 0 ? 'gj' : 'j'", { expr = true })
 
 -- Better indenting
 map("v", "<", "<gv")
@@ -120,7 +120,7 @@ map({ "i", "n" }, "<esc>", "<cmd>noh<cr><esc>", { desc = "Clear hlsearch and ESC
 
 -- Visual Maps
 map("v", "J", ":m '>+1<CR>gv=gv") -- Move current line down
-map("v" , "K", ":m '>-2<CR>gv=gv")   -- Move current line up
+map("v", "K", ":m '>-2<CR>gv=gv") -- Move current line up
 
 -- Stay in my sight
 map("n", "<C-d>", "<C-d>zz", { silent = true })
@@ -151,4 +151,3 @@ local function toggle_netrw()
 end
 map("n", "<leader>n", toggle_netrw,
   { silent = true, noremap = true, desc = "Toggle [N]etrw" })
-

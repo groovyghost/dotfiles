@@ -54,13 +54,13 @@ function cdf() {
 }
 
 # Override pip to warn if not in a virtual environment
-function pip(){
-  if [[ -z "$VIRTUAL_ENV" ]]; then
-    printf "\033[1;33m Not in VENV\033[0m \n" && return 2
-  else
-    pip3 "$@"
-  fi
-}
+# function pip(){
+#   if [[ -z "$VIRTUAL_ENV" ]]; then
+#     printf "\033[1;33m Not in VENV\033[0m \n" && return 2
+#   else
+#     pip3 "$@"
+#   fi
+# }
 
 # Function to toggle virtual environment
 function ve() {
