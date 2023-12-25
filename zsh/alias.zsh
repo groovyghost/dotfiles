@@ -2,6 +2,7 @@ if [[ -n "$(command -v eza)" ]]; then
     alias ls='eza --icons --git'
     alias ll='eza -l --icons -a --git'
 fi
+alias tmx='tmux -u attach || tmux -u'
 alias -g ...='../..'
 alias -g ....='../../..'
 alias -g .....='../../../..'
