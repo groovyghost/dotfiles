@@ -51,6 +51,8 @@ require("lazy").setup({
       on_attach = function(bufnr)
         vim.keymap.set("n", "<leader>gd", require("gitsigns").diffthis,
           { buffer = bufnr, desc = "[G]it [D]iff current buffer" })
+        vim.keymap.set("n", "<leader>gd", require("gitsigns").diffthis,
+          { buffer = bufnr, desc = "[G]it [D]iff current buffer" })
       end
     },
   },

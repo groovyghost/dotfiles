@@ -5,7 +5,7 @@ return {
   config = function()
     -- Set up Treesitter configurations
     require("nvim-treesitter.configs").setup {
-      ensure_installed = { "bash", "c", "lua", "python" },  -- Install these parsers
+      ensure_installed = { "bash", "c", "lua", "markdown", "markdown_inline" ,"python" },  -- Install these parsers
       auto_install = false,  -- Disable auto installation of parsers
       highlight = { enable = true, },  -- Enable syntax highlighting
       indent = { enable = true },  -- Enable indentation
