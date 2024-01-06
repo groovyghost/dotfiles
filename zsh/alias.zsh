@@ -76,3 +76,12 @@ function ve() {
         print "\033[1;33mNo virtual environment found with the name '$venv_name'.\033[0m"
     fi
 }
+
+function copy() {
+  if [ -e "$1" ]; then
+    xclip -sel clip < "$1"
+    echo "Copied contents of $1 to clipboard."
+  else
+    echo "Error: File $1 does not exist."
+  fi
+}
