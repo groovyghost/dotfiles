@@ -101,12 +101,6 @@ require("lazy").setup({
       })
     end,
   },
-  -- ToDo Comments
-  {
-    "folke/todo-comments.nvim",
-    dependencies = { "nvim-lua/plenary.nvim" },
-    opts = {},
-  },
   {
     "numToStr/Navigator.nvim",
     cmd = {

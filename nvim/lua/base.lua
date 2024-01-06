@@ -86,7 +86,7 @@ api.nvim_create_autocmd("BufReadPost", {
 
 -- Close windows with "q" for specific file types
 api.nvim_create_autocmd("FileType", {
-  pattern = { "help", "man", "notify", "qf", "PlenaryTestPopup" },
+  pattern = { "vim", "help", "man", "notify", "qf", "PlenaryTestPopup" },
   callback = function(event)
     vim.bo[event.buf].buflisted = false
     vim.keymap.set("n", "q", "<cmd>close<cr>", { buffer = event.buf, silent = true })
