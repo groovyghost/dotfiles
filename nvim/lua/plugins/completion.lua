@@ -1,14 +1,14 @@
 -- Auto-completion setup using nvim-cmp
 return {
-  "hrsh7th/nvim-cmp",  -- Use nvim-cmp for completion
+  "hrsh7th/nvim-cmp", -- Use nvim-cmp for completion
 
   dependencies = {
-    "L3MON4D3/LuaSnip",               --> VS Code style snippet engine
-    "saadparwaiz1/cmp_luasnip",       --> Provide Luasnip as one of nvim-cmp sources
-    "hrsh7th/cmp-nvim-lsp",           --> nvim-cmp source for LSP engine
-    "hrsh7th/cmp-buffer",             --> nvim-cmp source for buffer words
-    "hrsh7th/cmp-path",               --> nvim-cmp source for file path
-    "rafamadriz/friendly-snippets",   --> Snippet collections
+    "L3MON4D3/LuaSnip",             -- VS Code style snippet engine
+    "saadparwaiz1/cmp_luasnip",     -- Provide Luasnip as one of nvim-cmp sources
+    "hrsh7th/cmp-nvim-lsp",         -- nvim-cmp source for LSP engine
+    "hrsh7th/cmp-buffer",           -- nvim-cmp source for buffer words
+    "hrsh7th/cmp-path",             -- nvim-cmp source for file path
+    "rafamadriz/friendly-snippets", -- Snippet collections
   },
 
   config = function()
@@ -56,24 +56,21 @@ return {
         end,
       },
       mapping = cmp.mapping.preset.insert({
-        ["<C-k>"] = cmp.mapping.select_prev_item(),  -- Previous suggestion
-        ["<C-j>"] = cmp.mapping.select_next_item(),  -- Next suggestion
+        ["<C-k>"] = cmp.mapping.select_prev_item(), -- Previous suggestion
+        ["<C-j>"] = cmp.mapping.select_next_item(), -- Next suggestion
         ["<C-b>"] = cmp.mapping.scroll_docs(-4),
         ["<C-f>"] = cmp.mapping.scroll_docs(4),
-        ["<C-Space>"] = cmp.mapping.complete(),      -- Show completion suggestions
-        ["<C-e>"] = cmp.mapping.abort(),             -- Close completion window
+        ["<C-Space>"] = cmp.mapping.complete(), -- Show completion suggestions
+        ["<C-e>"] = cmp.mapping.abort(),        -- Close completion window
         ["<CR>"] = cmp.mapping.confirm({ select = false }),
       }),
-      sources = cmp.config.sources(
-        {
-          { name = "nvim_lsp" },  -- LSP as a source
-          { name = "luasnip" },   -- Luasnip as a source
-        },
-        {
-          { name = "buffer" },    -- Buffer words as a source
-          { name = "path" },      -- File path as a source
-        }
-      ),
+      sources = cmp.config.sources({
+        { name = "nvim_lsp" }, -- LSP as a source
+        { name = "luasnip" },  -- Luasnip as a source
+      }, {
+        { name = "buffer" },   -- Buffer words as a source
+        { name = "path" },     -- File path as a source
+      }),
 
       -- UI customization
       window = {
@@ -95,9 +92,8 @@ return {
           })[entry.source.name]
 
           return vim_item
-        end
+        end,
       },
     })
-  end
+  end,
 }
-

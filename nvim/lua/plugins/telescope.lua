@@ -1,9 +1,9 @@
 -- Telescope setup for expandable fuzzy finder
 return {
-  "nvim-telescope/telescope.nvim",  -- Use Telescope for fuzzy finding
+  "nvim-telescope/telescope.nvim", -- Use Telescope for fuzzy finding
   branch = "0.1.x",
   dependencies = {
-    "nvim-lua/plenary.nvim",                      --> Lua function library for Neovim
+    "nvim-lua/plenary.nvim", --> Lua function library for Neovim
     "nvim-telescope/telescope-file-browser.nvim", --> File browser extension for Telescope
   },
   config = function()
@@ -29,7 +29,7 @@ return {
             ["<CR>"] = actions.select_default,
             ["<C-h>"] = actions.select_horizontal,
             ["<C-v>"] = actions.select_vertical,
-            ["q"] = actions.close
+            ["q"] = actions.close,
           },
         },
       },
@@ -46,8 +46,8 @@ return {
               ["d"] = fb_actions.remove,
               ["h"] = fb_actions.goto_parent_dir,
               ["/"] = function()
-                vim.cmd('startinsert')
-              end
+                vim.cmd("startinsert")
+              end,
             },
           },
         },
@@ -88,6 +88,5 @@ return {
         initial_mode = "normal",
       })
     end, { desc = "[E]xplorer" })
-  end
+  end,
 }
-

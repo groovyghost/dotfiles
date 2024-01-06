@@ -42,7 +42,6 @@ M.build = function()
     s = s .. (is_curr_buff_modified == 1 and " " or " ")
     s = s .. "%T "
     s = s .. " %#TabLineFill# "
-
   end
 
   s = s .. "%=" .. "  #Tab: " .. fn.tabpagenr("$") .. " |"
@@ -59,4 +58,3 @@ end
 vim.opt.tabline = "%!v:lua.nvim_tabline()"
 
 return M
-

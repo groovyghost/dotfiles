@@ -10,6 +10,5 @@ local function safe_require(module)
 end
 
 -- Core config modules
-safe_require("base")         -- Load the 'base' configuration module
+safe_require("base") -- Load the 'base' configuration module
 safe_require("plugin_specs") -- Load the 'plugins' configuration module
-safe_require("utils")        -- Load the 'utils' configuration module

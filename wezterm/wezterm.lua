@@ -18,7 +18,7 @@ local config = {
     { family = "ComicShannsMono Nerd Font", scale = 1.2, weight = "Medium" },
   }),
   warn_about_missing_glyphs = false,
-  window_background_opacity = 1,
+  window_background_opacity = 0.97,
   window_decorations = "RESIZE",
   window_close_confirmation = "AlwaysPrompt",
   scrollback_lines = 10000,

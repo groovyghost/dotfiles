@@ -60,10 +60,18 @@ local api = vim.api
 api.nvim_create_autocmd("BufWritePre", { command = [[:%s/\s\+$//e]] })
 
 -- Disable New Line Comment on buffer enter
-api.nvim_create_autocmd("BufEnter", { callback = function() vim.opt.formatoptions:remove({ "c", "r", "o" }) end })
+api.nvim_create_autocmd("BufEnter", {
+  callback = function()
+    vim.opt.formatoptions:remove({ "c", "r", "o" })
+  end,
+})
 
 -- Highlight on yank
-api.nvim_create_autocmd("TextYankPost", { callback = function() vim.highlight.on_yank() end })
+api.nvim_create_autocmd("TextYankPost", {
+  callback = function()
+    vim.highlight.on_yank()
+  end,
+})
 
 -- Go to last location when opening a buffer
 api.nvim_create_autocmd("BufReadPost", {
@@ -78,7 +86,7 @@ api.nvim_create_autocmd("BufReadPost", {
 
 -- Close windows with "q" for specific file types
 api.nvim_create_autocmd("FileType", {
-  pattern = { "help", "man", "notify", "sagaoutline", "sagacodeaction", "qf", "PlenaryTestPopup" },
+  pattern = { "help", "man", "notify", "qf", "PlenaryTestPopup" },
   callback = function(event)
     vim.bo[event.buf].buflisted = false
     vim.keymap.set("n", "q", "<cmd>close<cr>", { buffer = event.buf, silent = true })
@@ -86,6 +94,20 @@ api.nvim_create_autocmd("FileType", {
 })
 
 api.nvim_create_autocmd("FileType", { pattern = "man", command = [[nnoremap <buffer><silent> q :quit<CR>]] })
+-- Detect ansible files
+api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
+  pattern = {
+    "**/playbooks/*.yml",
+    "**/playbooks/*.yaml",
+    "**/ansible/*.yml",
+    "**/ansible/*.yaml",
+    "**/roles/*/{tasks,defaults,handlers}/*.yml",
+    "**/roles/*/{tasks,defaults,handlers}/*.yaml",
+  },
+  callback = function()
+    vim.opt.ft = "yaml.ansible"
+  end,
+})
 
 -- Keymaps
 local map = vim.keymap.set
@@ -128,11 +150,15 @@ map("n", "<C-u>", "<C-u>zz", { silent = true })
 map("n", "n", "nzzzv", { silent = true })
 map("n", "N", "Nzzzv", { silent = true })
 
+map("n", "<C-h>", "<C-w>h", { silent = true })
+map("n", "<C-j>", "<C-w>j", { silent = true })
+map("n", "<C-k>", "<C-w>k", { silent = true })
+map("n", "<C-l>", "<C-w>l", { silent = true })
 -- NETRW
 vim.g.netrw_banner = 0
-vim.g.netrw_liststyle = 0    --> 0: Simple, 1: Detailed, 2: Thick, 3: Tree
+vim.g.netrw_liststyle = 0 --> 0: Simple, 1: Detailed, 2: Thick, 3: Tree
 vim.g.netrw_browse_split = 3 --> Open file in 0: Reuse the same win, 1: Horizontal split, 2: Vertical split, 3: New tab
-vim.g.netrw_winsize = 25     --> seems to be in percentage
+vim.g.netrw_winsize = 25 --> seems to be in percentage
 
 vim.g.netrw_is_open = false
 local function toggle_netrw()
@@ -149,5 +175,6 @@ local function toggle_netrw()
     vim.g.netrw_is_open = true
   end
 end
-map("n", "<leader>n", toggle_netrw,
-  { silent = true, noremap = true, desc = "Toggle [N]etrw" })
+map("n", "<leader>n", toggle_netrw, { silent = true, noremap = true, desc = "Toggle [N]etrw" })
+
+require("utils.tabline")
