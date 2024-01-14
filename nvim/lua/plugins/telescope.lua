@@ -33,10 +33,23 @@ return {
           },
         },
       },
+      buffers = {
+        theme = "dropdown",
+        previewer = false,
+        initial_mode = "normal",
+        mappings = {
+          i = {
+            ["<C-d>"] = actions.delete_buffer,
+          },
+          n = {
+            ["dd"] = actions.delete_buffer,
+          },
+        },
+      },
       extensions = {
         file_browser = {
           theme = "dropdown",
-          hijack_netrw = true,
+          hijack_netrw = false,
           mappings = {
             ["n"] = {
               ["a"] = fb_actions.create,
@@ -68,6 +81,11 @@ return {
     vim.keymap.set("n", "<leader>fs", builtin.live_grep, { desc = "[F]ind [S]tring" })
     vim.keymap.set("n", "<leader>fr", builtin.oldfiles, { desc = "[F]ind [R]ecent files" })
     vim.keymap.set("n", "<leader>fd", builtin.diagnostics, { desc = "[F]ind [D]iagnostics" })
+    vim.keymap.set("n", "<leader>fb", function()
+      builtin.buffers(require("telescope.themes").get_dropdown({
+        previewer = false,
+      }))
+    end, { desc = "[F]ind [B]uffers" })
     vim.keymap.set("n", "<leader>f/", function()
       builtin.current_buffer_fuzzy_find(require("telescope.themes").get_dropdown({
         previewer = false,
@@ -85,7 +103,6 @@ return {
         respect_gitignore = false,
         hidden = true,
         grouped = true,
-        initial_mode = "normal",
       })
     end, { desc = "[E]xplorer" })
   end,

@@ -1,10 +1,10 @@
 -- Pull in the wezterm API
-local wezterm = require 'wezterm'
+local wezterm = require("wezterm")
 local act = wezterm.action
 local mux = wezterm.mux
 
 -- Set up a callback for the GUI startup event
-wezterm.on('gui-startup', function(cmd)
+wezterm.on("gui-startup", function(cmd)
   -- Spawn a new window, tab, and pane, and maximize the window
   local tab, pane, window = mux.spawn_window(cmd or {})
   window:gui_window():maximize()
@@ -25,16 +25,16 @@ local config = {
   default_workspace = "main",
 
   window_padding = {
-    left = '0.5cell',
-    right = '0.5cell',
-    top = '0.5cell',
-    bottom = '0cell',
+    left = "0.5cell",
+    right = "0.5cell",
+    top = "0.5cell",
+    bottom = "0cell",
   },
 
   -- Dim inactive panes
   inactive_pane_hsb = {
     saturation = 0.24,
-    brightness = 0.5
+    brightness = 0.5,
   },
 
   -- Tab bar configuration
@@ -51,8 +51,8 @@ local config = {
       event = { Up = { streak = 1, button = "Left" } },
       mods = "",
       action = act.CompleteSelectionOrOpenLinkAtMouseCursor("Clipboard"),
-    }
-  }
+    },
+  },
 }
 
 -- Set up a callback for the update-status event
@@ -96,4 +96,3 @@ end)
 
 -- Return the configured settings
 return config
-

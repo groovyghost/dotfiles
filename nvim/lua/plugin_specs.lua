@@ -30,20 +30,6 @@ require("lazy").setup({
       vim.cmd.colorscheme("tokyonight")
     end,
   },
-
-  -- Statusline
-  {
-    "nvim-lualine/lualine.nvim",
-    dependencies = "nvim-tree/nvim-web-devicons",
-    opts = {
-      options = {
-        theme = "tokyonight",
-        component_separators = "|",
-        section_separators = "",
-      },
-    },
-  },
-
   -- Git information
   {
     "lewis6991/gitsigns.nvim",
@@ -119,6 +105,16 @@ require("lazy").setup({
     },
     config = function()
       require("Navigator").setup()
+    end,
+  },
+  {
+    "Exafunction/codeium.nvim",
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+      "hrsh7th/nvim-cmp",
+    },
+    config = function()
+      require("codeium").setup({})
     end,
   },
 })

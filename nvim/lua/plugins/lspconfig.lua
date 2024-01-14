@@ -25,6 +25,9 @@ return {
     local on_attach = function(_, bufnr)
       -- A function that lets us more easily define mappings specific
       -- for LSP related items. It sets the mode, buffer and description for us each time.
+      vim.api.nvim_buf_create_user_command(bufnr, "Format", function(_)
+        vim.lsp.buf.format()
+      end, { desc = "Format current buffer with LSP" })
       local nmap = function(keys, func, desc)
         if desc then
           desc = "LSP: " .. desc
@@ -119,16 +122,12 @@ return {
         },
       },
       bashls = {},
-      cssls = {},
+      clangd = {},
       dockerls = {},
       terraformls = {},
-      html = {},
-      tsserver = {},
       pyright = {},
-      jsonls = {},
       yamlls = {},
       marksman = {},
-      tailwindcss = {},
     }
     -- Ensure the servers above are installed
     local mason_lspconfig = require("mason-lspconfig")

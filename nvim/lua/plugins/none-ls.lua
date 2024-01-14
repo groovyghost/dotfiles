@@ -7,15 +7,13 @@ return {
   },
   config = function()
     local servers = {
+      "ansible-lint",
       "black",
       "stylua",
       "shellcheck",
       "shfmt",
       "tflint",
       "isort",
-      "prettier",
-      "eslint_d",
-      "ansible-lint",
     }
     local mason_installer = require("mason-tool-installer")
     mason_installer.setup({
@@ -25,13 +23,9 @@ return {
     nls.setup({
       sources = {
         --Diagnostics
-        nls.builtins.diagnostics.eslint_d,
         --Code_actions
         nls.builtins.code_actions.shellcheck,
         --Formatting
-        nls.builtins.formatting.prettier.with({
-          extra_args = { "--single-quote", "false" },
-        }),
         nls.builtins.formatting.stylua.with({ extra_args = { "--indent-type", "Spaces", "--indent-width", "2" } }),
         nls.builtins.formatting.shfmt,
         nls.builtins.formatting.terraform_fmt,

@@ -133,9 +133,9 @@ map("n", "<leader>s", ":split<CR>", { desc = "Horizontal split" })
 map("n", "<leader>v", ":vsplit<CR>", { desc = "Vertical split" })
 
 -- Tabs
-map("n", "<tab>", ":tabnext<CR>", { desc = "Next tab" })
-map("n", "<S-tab>", ":tabprevious<CR>", { desc = "Prev tab" })
-map("n", "<leader>x", ":tabclose<CR>", { desc = "Close current tab" })
+map("n", "<tab>", ":bnext<CR>", { desc = "Next tab" })
+map("n", "<S-tab>", ":bprevious<CR>", { desc = "Prev tab" })
+map("n", "<leader>x", ":bdelete<CR>", { desc = "Close current tab" })
 
 -- Cancel search highlighting with ESC
 map({ "i", "n" }, "<esc>", "<cmd>noh<cr><esc>", { desc = "Clear hlsearch and ESC" })
