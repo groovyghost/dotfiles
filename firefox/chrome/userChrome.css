@@ -1,0 +1,289 @@
+/*===KeyFox by AlfarexGuy2019===*/
+
+
+/* MIN MAX CLOSE Remove */
+#TabsToolbar > .titlebar-buttonbox-container {
+  visibility: collapse !important;}
+
+/*Basic Settings*/
+
+
+:root {
+  --navbarWidth     : 40vw; /* Set width of navbar. Use px for a fixed width
+                                or vw for a percentage of your window. */
+  --animationSpeed  : 0.5s;
+}
+
+
+#TabsToolbar {
+  margin-left : var(--navbarWidth) !important;
+}
+
+#nav-bar {
+  margin-right: calc(100vw - var(--navbarWidth)) !important;
+}
+
+#urlbar-container {
+  min-width   : 0px !important;
+}
+
+:root[uidensity="compact"] #nav-bar {
+  margin-top  : -37px !important;
+  height      : 37px !important;
+}
+
+:root:not([uidensity="compact"]):not([uidensity="touch"]) #nav-bar {
+  margin-top  : -44px !important;
+  height      : 44px !important;
+}
+
+:root[uidensity="touch"] #nav-bar {
+  margin-top  : -49px !important;
+  height      : 49px !important;
+}
+
+
+/* Back Hide */
+#back-button[disabled="true"] { display: none !important }
+
+/* Forward Hide */
+#forward-button[disabled="true"] { display: none !important }
+
+/* Hide extension button */
+#unified-extensions-button { display: none !important; }
+
+/* Simplifying interface */
+
+#nav-bar {
+  background  : none !important;
+  box-shadow  : none !important;
+}
+
+#navigator-toolbox {
+  border      : none !important;
+}
+
+.titlebar-spacer {
+  display     : none !important;
+}
+
+#urlbar-background {
+  border      : none !important;
+}
+
+#urlbar:not(:hover):not([breakout][breakout-extend]) > #urlbar-background {
+  box-shadow  : none !important;
+  background  : none !important;
+}
+
+
+/* Element Hiding stuff */
+
+.urlbar-icon, #userContext-indicator, #userContext-label {
+  fill        : transparent !important;
+  background  : transparent !important;
+  color       : transparent !important;
+}
+
+#urlbar:hover .urlbar-icon,
+#urlbar:active .urlbar-icon,
+#urlbar[focused] .urlbar-icon {
+  fill        : var(--toolbar-color) !important;
+}
+
+/*================== TABS BAR ==================*/
+
+#titlebar #TabsToolbar {
+  background: rgba(var(--dark-color), 1) !important;
+}
+
+
+#PersonalToolbar {
+  background: rgba(var(--dark-color), 1) !important;
+  color: rgba(var(--light-color), 1) !important;
+  padding-bottom: 6px !important;
+  padding-top: 1px !important;
+}
+
+toolbar#nav-bar {
+  background: rgba(var(--dark-color), 1) !important;
+  box-shadow: none !important;
+  padding-bottom: 4px !important;
+}
+
+/*================ DARK THEME ================*/
+:root:-moz-lwtheme-brighttext,
+.sidebar-panel[lwt-sidebar-brighttext],
+body[lwt-sidebar-brighttext] {
+	--main-bgcolor: var(--dark-color);
+	--transparent-bgcolor: var(--dark-color);
+}
+
+tab[selected="true"] .tab-content {
+  color: rgba(var(--secondary-accent-color), 1) !important;
+}
+
+tab[selected="true"] .tab-background {
+  background: rgba(var(--accent-color), 1) !important;
+}
+.tabbrowser-tab>.tab-stack>.tab-background:not([selected="true"]) {
+  transition: all 0.3s ease !important;
+}
+
+.tabbrowser-tab:hover>.tab-stack>.tab-background:not([selected="true"]) {
+  background-color: rgba(var(--transparent-bgcolor), 0.7) !important;
+}
+
+.tab-line {
+  height: 0px !important;
+}
+
+.tabbrowser-tab {
+  margin-right: 5px !important;
+}
+
+.tabbrowser-tab:not([visuallyselected="true"]),
+.tabbrowser-tab:-moz-lwtheme {
+  color: rgba(var(--second-tab-text-color), 1) !important;
+}
+
+tab[selected="true"] .tab-content {
+  color: rgba(var(--tab-text-color), 1) !important;
+}
+
+tab[selected="true"] .tab-background {
+  background: rgba(var(--accent-color), 1) !important;
+}
+
+.tabbrowser-tab::after,
+.tabbrowser-tab::before {
+  border-left: 0 !important;
+  opacity: 0 !important;
+}
+
+.tab-close-button {
+  transition: all 0.3s ease !important;
+  border-radius: 4px !important;
+}
+
+.tabbrowser-tab .tab-label  { color: var(--uc-inverted-colour) !important; }
+.tab-close-button { fill: var(--uc-inverted-colour) !important }
+
+/*===COLORS===*/
+
+:root {
+  --accent-color: 45, 45, 45;
+  --tab-color: 240, 240, 244;
+  --tab-text-color: 255, 255, 255;
+  --secondary-accent-color: 127,127,127;
+  --second-tab-text-color: 127,127,127;
+  --third-accent-color: 235, 219, 178;
+  --light-color: 255, 255, 255;
+  --dark-color: 0, 0, 0;
+  --url-back: 249, 249, 251;
+  --caption-min-color: 215, 153, 33;
+  --caption-max-color: 69, 133, 136;
+  --caption-close-color: 177, 98, 134;
+}
+
+
+@media (prefers-color-scheme: dark) { :root {
+
+  /* These colours are (mainly) used by the
+     Container Tabs Plugin */
+  --uc-identity-colour-blue:      #7ED6DF;
+  --uc-identity-colour-turquoise: #55E6C1;
+  --uc-identity-colour-green:     #B8E994;
+  --uc-identity-colour-yellow:    #F7D794;
+  --uc-identity-colour-orange:    #F19066;
+  --uc-identity-colour-red:       #FC5C65;
+  --uc-identity-colour-pink:      #F78FB3;
+  --uc-identity-colour-purple:    #786FA6;
+
+  /*  Cascades main Colour Scheme */
+  --uc-base-colour:               #1E2021;
+  --uc-highlight-colour:          #191B1C;
+  --uc-inverted-colour:           #FAFAFC;
+  --uc-muted-colour:              #AAAAAC;
+  --uc-accent-colour:             var(--uc-identity-colour-purple);
+
+}}
+
+
+@media (prefers-color-scheme: light) { :root {
+
+  /* These colours are (mainly) used by the
+     Container Tabs Plugin */
+  --uc-identity-colour-blue:      #1D65F5;
+  --uc-identity-colour-turquoise: #209FB5;
+  --uc-identity-colour-green:     #40A02B;
+  --uc-identity-colour-yellow:    #E49320;
+  --uc-identity-colour-orange:    #FE640B;
+  --uc-identity-colour-red:       #FC5C65;
+  --uc-identity-colour-pink:      #EC83D0;
+  --uc-identity-colour-purple:    #822FEE;
+
+  /*  Cascades main Colour Scheme */
+  --uc-base-colour:               #FAFAFC;
+  --uc-highlight-colour:          #DADADC;
+  --uc-inverted-colour:           #1E2021;
+  --uc-muted-colour:              #191B1C;
+  --uc-accent-colour:             var(--uc-identity-colour-purple);
+
+}}
+
+
+
+
+/* Down here I'm just reassigning variables based on the colours set above.
+   Feel free to play around with these but there is no editing necessary below this line. c:
+   */
+
+:root {
+
+  --lwt-frame: var(--uc-base-colour) !important;
+  --lwt-accent-color: var(--lwt-frame) !important;
+  --lwt-text-color: var(--uc-inverted-colour) !important;
+
+  --toolbar-field-color: var(--uc-inverted-colour) !important;
+
+  --toolbar-field-focus-color: var(--uc-inverted-colour) !important;
+  --toolbar-field-focus-background-color: var(--uc-highlight-colour) !important;
+  --toolbar-field-focus-border-color: transparent !important;
+
+  --toolbar-field-background-color: var(--lwt-frame) !important;
+  --lwt-toolbar-field-highlight: var(--uc-inverted-colour) !important;
+  --lwt-toolbar-field-highlight-text: var(--uc-highlight-colour) !important;
+  --urlbar-popup-url-color: var(--uc-accent-colour) !important;
+
+  --lwt-tab-text: var(--lwt-text-colour) !important;
+
+  --lwt-selected-tab-background-color: var(--uc-highlight-colour) !important;
+
+  --toolbar-bgcolor: var(--lwt-frame) !important;
+  --toolbar-color: var(--lwt-text-color) !important;
+  --toolbarseparator-color: var(--uc-accent-colour) !important;
+  --toolbarbutton-hover-background: var(--uc-highlight-colour) !important;
+  --toolbarbutton-active-background: var(--toolbarbutton-hover-background) !important;
+
+  --lwt-sidebar-background-color: var(--lwt-frame) !important;
+  --sidebar-background-color: var(--lwt-sidebar-background-color) !important;
+
+  --urlbar-box-bgcolor: var(--uc-highlight-colour) !important;
+  --urlbar-box-text-color: var(--uc-muted-colour) !important;
+  --urlbar-box-hover-bgcolor: var(--uc-highlight-colour) !important;
+  --urlbar-box-hover-text-color: var(--uc-inverted-colour) !important;
+  --urlbar-box-focus-bgcolor: var(--uc-highlight-colour) !important;
+
+}
+
+
+
+.identity-color-blue      { --identity-tab-color: var(--uc-identity-colour-blue)      !important; --identity-icon-color: var(--uc-identity-colour-blue)      !important;  }
+.identity-color-turquoise { --identity-tab-color: var(--uc-identity-colour-turquoise) !important; --identity-icon-color: var(--uc-identity-colour-turquoise) !important; }
+.identity-color-green     { --identity-tab-color: var(--uc-identity-colour-green)     !important; --identity-icon-color: var(--uc-identity-colour-green)     !important; }
+.identity-color-yellow    { --identity-tab-color: var(--uc-identity-colour-yellow)    !important; --identity-icon-color: var(--uc-identity-colour-yellow)    !important; }
+.identity-color-orange    { --identity-tab-color: var(--uc-identity-colour-orange)    !important; --identity-icon-color: var(--uc-identity-colour-orange)    !important; }
+.identity-color-red       { --identity-tab-color: var(--uc-identity-colour-red)       !important; --identity-icon-color: var(--uc-identity-colour-red)       !important; }
+.identity-color-pink      { --identity-tab-color: var(--uc-identity-colour-pink)      !important; --identity-icon-color: var(--uc-identity-colour-pink)      !important; }
+.identity-color-purple    { --identity-tab-color: var(--uc-identity-colour-purple)    !important; --identity-icon-color: var(--uc-identity-colour-purple)    !important; }
