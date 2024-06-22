@@ -5,12 +5,11 @@ if [[ -n "$(command -v eza)" ]]; then
 fi
 
 alias tmx='tmux -u attach || tmux -u'
+alias grep='grep --color=auto'
 
 # Short aliases for directory traversal
 alias -g ...='../..'
 alias -g ....='../../..'
-alias -g .....='../../../..'
-alias -g ......='../../../../..'
 
 # Alias for connecting to VPN using openfortivpn
 alias fvpn='sudo openfortivpn --persistent=2'
@@ -20,9 +19,6 @@ alias -- -='cd -'
 
 # Set AWS profile using fzf and list profiles from AWS credentials file
 alias awsp='export AWS_PROFILE=$(sed -n "s/^\[\(.*\)\]$/\1/p" ~/.aws/credentials | fzf -i --height=20% --reverse --border) && echo "$AWS_PROFILE is set"'
-
-# Alias and function for history search
-alias histgrep='echo "[Tip] Use !number to execute the command" && history -i -100 | grep' # -i for the timestamp
 
 # Function to create a gzipped tar archive
 function tarup() { tar -czvf ${1}.tar.gz $1 }
@@ -52,15 +48,6 @@ function cdf() {
     --header='Pick a directory to navigate to')
   [[ -z $selected ]] && echo 'Nothing was selected :(' || cd "$selected"
 }
-
-# Override pip to warn if not in a virtual environment
-# function pip(){
-#   if [[ -z "$VIRTUAL_ENV" ]]; then
-#     printf "\033[1;33m Not in VENV\033[0m \n" && return 2
-#   else
-#     pip3 "$@"
-#   fi
-# }
 
 # Function to toggle virtual environment
 function ve() {
