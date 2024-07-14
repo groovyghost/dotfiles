@@ -6,7 +6,7 @@ export HISTSIZE=10000
 export SAVEHIST=10000
 
 # Set PATH
-export PATH=$HOME/.local/bin:$HOME/.local/go/bin:$HOME/.pulumi/bin:$HOME/.cargo/bin:$HOME/.local/node-16/bin:$HOME/.local/maven-3.6.3/bin:$HOME/.local/cqlsh/bin:$PATH
+export PATH=$HOME/.local/bin:$HOME/.local/go/bin:$HOME/.pulumi/bin:$HOME/.cargo/bin:$HOME/.local/node-16/bin:$HOME/.local/maven-3.6.3/bin:$HOME/.local/cqlsh/bin:$HOME/.local/neovim/bin:$PATH
 
 # Enable zsh options
 autoload -Uz colors && colors
@@ -27,11 +27,17 @@ zinit light zsh-users/zsh-autosuggestions
 
 eval "$(zoxide init zsh)"
 
-bindkey -e
 autoload -Uz compinit
 [ ! "$(find ~/.config/zsh/.zcompdump -mtime 1)" ] || compinit -C
 
+source "$ZDOTDIR"/keybindings.zsh
 source "$ZDOTDIR"/alias.zsh
 source "$ZDOTDIR"/cs50.zsh
 source <(kubectl completion zsh)
 source "$ZDOTDIR"/prompt.zsh
+# fnm
+FNM_PATH="/home/user/.local/share/fnm"
+if [ -d "$FNM_PATH" ]; then
+  export PATH="/home/user/.local/share/fnm:$PATH"
+  eval "`fnm env --use-on-cd`"
+fi

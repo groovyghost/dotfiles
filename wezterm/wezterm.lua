@@ -7,7 +7,9 @@ local mux = wezterm.mux
 wezterm.on("gui-startup", function(cmd)
   -- Spawn a new window, tab, and pane, and maximize the window
   local tab, pane, window = mux.spawn_window(cmd or {})
-  window:gui_window():maximize()
+  --window:gui_window():maximize()
+  window:gui_window():set_position(66, 100)
+  window:gui_window():set_inner_size(1790, 940)
 end)
 
 -- Configure wezterm settings
@@ -23,6 +25,7 @@ local config = {
   window_close_confirmation = "AlwaysPrompt",
   scrollback_lines = 10000,
   default_workspace = "main",
+  adjust_window_size_when_changing_font_size = true,
 
   window_padding = {
     left = "0.5cell",
@@ -39,10 +42,11 @@ local config = {
 
   -- Tab bar configuration
   use_fancy_tab_bar = false,
+  enable_tab_bar = true,
   status_update_interval = 1000,
-  show_new_tab_button_in_tab_bar = false,
-  show_tab_index_in_tab_bar = false,
-  show_tabs_in_tab_bar = false,
+  show_new_tab_button_in_tab_bar = true,
+  show_tab_index_in_tab_bar = true,
+  show_tabs_in_tab_bar = true,
 
   -- Mouse bindings
   disable_default_mouse_bindings = false,
@@ -54,45 +58,5 @@ local config = {
     },
   },
 }
-
--- Set up a callback for the update-status event
-wezterm.on("update-status", function(window, pane)
-  -- Helper function to extract the basename from a path
-  local basename = function(s)
-    return string.gsub(s, "(.*[/\\])(.*)", "%2")
-  end
-
-  -- Get current working directory and command
-  local cwd = pane:get_current_working_dir() and basename(pane:get_current_working_dir()) or ""
-  local cmd = pane:get_foreground_process_name() and basename(pane:get_foreground_process_name()) or ""
-
-  -- Get the current time
-  local time = wezterm.strftime("%H:%M")
-
-  -- Set left status (left of the tab line)
-  window:set_left_status(wezterm.format({
-    { Text = "| " },
-    { Foreground = { Color = "#f7768e" } },
-    { Text = wezterm.nerdfonts.md_cat },
-    "ResetAttributes",
-    { Text = " | " },
-    { Foreground = { Color = "#e0af68" } },
-    { Text = wezterm.nerdfonts.fa_code .. "  " .. cmd },
-    "ResetAttributes",
-    { Text = " | " },
-  }))
-
-  -- Set right status
-  window:set_right_status(wezterm.format({
-    { Text = " | " },
-    { Text = wezterm.nerdfonts.md_folder .. "  " .. cwd },
-    { Foreground = { Color = "#e0af68" } },
-    "ResetAttributes",
-    { Text = " | " },
-    { Text = wezterm.nerdfonts.md_clock .. "  " .. time },
-    { Text = "  " },
-  }))
-end)
-
 -- Return the configured settings
 return config
