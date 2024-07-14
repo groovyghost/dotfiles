@@ -6,6 +6,7 @@ fi
 
 alias tmx='tmux -u attach || tmux -u'
 alias grep='grep --color=auto'
+alias rm='rm -i'
 
 # Short aliases for directory traversal
 alias -g ...='../..'
