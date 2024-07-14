@@ -1,37 +1,39 @@
+-- Treesitter setup for enhanced syntax highlighting, indentation, and selection
 return {
-  "nvim-treesitter/nvim-treesitter", -- Syntax highlighting
-  build = function()
-    require("nvim-treesitter.install").update({ with_sync = true })
-  end,
-  event = { "BufReadPost", "BufNewFile" },
-  opts = {
-    ensure_installed = {
-      "bash",
-      "css",
-      "dockerfile",
-      "go",
-      "hcl",
-      "html",
-      "javascript",
-      "json",
-      "lua",
-      "markdown",
-      "markdown_inline",
-      "python",
-      "regex",
-      "terraform",
-      "yaml",
-    },
-    highlight = { enable = true },
-    indent = { enable = true },
-    context_commentstring = {
-      enable = true,
-      enable_autocmd = false
-    },
-    incremental_selection = { enable = true },
-    autotag = { enable = true },
-  },
-  config = function(_, opts)
-    require("nvim-treesitter.configs").setup(opts)
+  "nvim-treesitter/nvim-treesitter", -- Use nvim-treesitter for syntax highlighting
+  build = ":TSUpdate", -- Build command to update Treesitter parsers
+  config = function()
+    -- Set up Treesitter configurations
+    require("nvim-treesitter.configs").setup({
+      ensure_installed = {
+        "bash",
+        "c",
+        "dockerfile",
+        "go",
+        "groovy",
+        "hcl",
+        "java",
+        "javascript",
+        "json",
+        "lua",
+        "markdown",
+        "markdown_inline",
+        "python",
+        "terraform",
+        "vim",
+      }, -- Install these parsers
+      auto_install = false, -- Disable auto installation of parsers
+      highlight = { enable = true }, -- Enable syntax highlighting
+      indent = { enable = true }, -- Enable indentation
+      incremental_selection = {
+        enable = true, -- Enable incremental selection
+        keymaps = {
+          init_selection = "<C-space>", -- Initialize selection
+          node_incremental = "<C-space>", -- Incremental selection
+          scope_incremental = "<C-s>", -- Incremental selection of scope
+          node_decremental = "<M-space>", -- Decremental selection
+        },
+      },
+    })
   end,
 }

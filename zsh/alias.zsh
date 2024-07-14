@@ -1,38 +1,74 @@
-if [[ -n "$(command -v exa)" ]]; then
-    alias ls='exa --icons --git'
-    alias ll='exa -l --icons -a --git'
+# Aliases for enhanced ls and tmux
+if [[ -n "$(command -v eza)" ]]; then
+    alias ls='eza --icons --git'
+    alias ll='eza -l --icons -a --git'
 fi
+
+alias tmx='tmux -u attach || tmux -u'
+alias grep='grep --color=auto'
+
+# Short aliases for directory traversal
 alias -g ...='../..'
 alias -g ....='../../..'
-alias -g .....='../../../..'
-alias -g ......='../../../../..'
+
+# Alias for connecting to VPN using openfortivpn
 alias fvpn='sudo openfortivpn --persistent=2'
+
+# Alias for quick navigation
 alias -- -='cd -'
+
+# Set AWS profile using fzf and list profiles from AWS credentials file
 alias awsp='export AWS_PROFILE=$(sed -n "s/^\[\(.*\)\]$/\1/p" ~/.aws/credentials | fzf -i --height=20% --reverse --border) && echo "$AWS_PROFILE is set"'
-alias histgrep='echo "[Tip] Use !number to execute the command" && history -i -100 | grep' # -i for the timestamp
-# c for archive, z for gzip, v for verbose, f for file
-tarup() { tar -czvf ${1}.tar.gz $1 }
 
-# x for extracting, v for verbose, f for file
-untar() { tar -zxvf $1 }
+# Function to create a gzipped tar archive
+function tarup() { tar -czvf ${1}.tar.gz $1 }
 
-mkcd() { mkdir -p $1; cd $1 }
+# Function to extract a gzipped tar archive
+function untar() { tar -zxvf $1 }
 
-# Using fzf to prompt hosts in ~/.ssh/config
-sshf() {
-  [[ ! -e ~/.ssh/config ]] && echo 'There are is SSH config file!'
+# Function to make a directory and change into it
+function mkcd() { mkdir -p $1; cd $1 }
+
+# Function to SSH into a host from SSH config using fzf
+function sshf() {
+  [[ ! -e ~/.ssh/config ]] && echo 'There is no SSH config file!' && return
   hostnames=$(awk ' $1 == "Host" { print $2 } ' ~/.ssh/config )
-  [[ -z "${hostnames}" ]] && echo 'There are no host param in SSH config file'
+  [[ -z "${hostnames}" ]] && echo 'There are no host parameters in SSH config file' && return
   selected=$(printf "%s\n" "${hostnames[@]}" | fzf \
     --reverse --border=rounded --cycle --height=30% \
-    --header='pick a host')
+    --header='Pick a host')
   [[ -z "${selected}" ]] && echo 'Nothing was selected :(' && return
   echo "SSH to ${selected}..." && ssh "$selected"
 }
 
-cdf() {
+# Function to change directory using fzf
+function cdf() {
   selected=$(find * -maxdepth 1 -type d 2>/dev/null | fzf \
     --reverse --border=rounded --cycle --height=50% \
     --header='Pick a directory to navigate to')
   [[ -z $selected ]] && echo 'Nothing was selected :(' || cd "$selected"
+}
+
+# Function to toggle virtual environment
+function ve() {
+    if [[ -n "$VIRTUAL_ENV" ]]; then
+        deactivate
+    else
+        local venv_name="${1:-.venv}"
+        local venv_path="$PWD/$venv_name"
+        if [[ -d "$venv_path" ]]; then
+            source "$venv_path/bin/activate"
+            return
+        fi
+        print "\033[1;33mNo virtual environment found with the name '$venv_name'.\033[0m"
+    fi
+}
+
+function copy() {
+  if [ -e "$1" ]; then
+    xclip -sel clip < "$1"
+    echo "Copied contents of $1 to clipboard."
+  else
+    echo "Error: File $1 does not exist."
+  fi
 }

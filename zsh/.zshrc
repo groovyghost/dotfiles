@@ -1,55 +1,37 @@
-#zmodload zsh/zprof
-
-# Editor settings
-export EDITOR="nvim"
-export VISUAL="nvim"
-
-# History config
+# Set environment variables
+export EDITOR=nvim
+export VISUAL=$EDITOR
 export HISTFILE=$ZDOTDIR/.zsh_history
 export HISTSIZE=10000
 export SAVEHIST=10000
 
-# Path config
-export PATH=/opt/homebrew/bin:$HOME/.local/bin:$HOME/.local/bin/go/bin:$HOME/.cargo/bin:$HOME/.local/gradle/bin:$PATH
+# Set PATH
+export PATH=$HOME/.local/bin:$HOME/.local/go/bin:$HOME/.pulumi/bin:$HOME/.cargo/bin:$HOME/.local/node-16/bin:$HOME/.local/maven-3.6.3/bin:$HOME/.local/cqlsh/bin:$PATH
 
-# Some zsh options
+# Enable zsh options
 autoload -Uz colors && colors
-setopt extendedglob
-setopt incappendhistory # Save history incrementally
-setopt HIST_IGNORE_ALL_DUPS # No duplicates in history
-setopt HIST_FIND_NO_DUPS # No duplicates in history
-setopt auto_cd # cd with path only
-setopt interactivecomments # bash style comments
+setopt extendedglob incappendhistory hist_ignore_all_dups hist_find_no_dups interactivecomments
 
-# Plugin list to be sourced
-PLUGINS=(zsh-autosuggestions
-  key-bindings
-  fast-syntax-highlighting/fast-syntax-highlighting.plugin
-  autopair)
+# Download and load zinit
+ZINIT_HOME="${XDG_DATA_HOME:-$HOME/.local/share}/zinit/zinit.git"
+if [[ ! -d "$ZINIT_HOME" ]]; then
+  git clone https://github.com/zdharma-continuum/zinit.git "$ZINIT_HOME"
+fi
+source "$ZINIT_HOME/zinit.zsh"
+zinit cdreplay -q
 
-for plugin in "${PLUGINS[@]}"; do
-  if [[ -f "$ZDOTDIR"/plugins/"$plugin".zsh ]]; then
-    source "$ZDOTDIR"/plugins/"$plugin".zsh
-  else
-    printf "\033[1;31m "$plugin" Plugin - not found\033[0m\n"
-  fi
-done
+# Load zinit plugins
+zinit light zsh-users/zsh-syntax-highlighting
+zinit light zsh-users/zsh-completions
+zinit light zsh-users/zsh-autosuggestions
 
-# Completions path
-fpath=("$ZDOTDIR"/completions $fpath)
-
-# Source zoxide & aliases
 eval "$(zoxide init zsh)"
-source "$ZDOTDIR"/alias.zsh
 
-# Load completions (Runs if old than one day)
+bindkey -e
 autoload -Uz compinit
-[ ! "$(find ~/.config/zsh/.zcompdump -mtime 1)" ] || compinit
-compinit -C
-autopair-init
+[ ! "$(find ~/.config/zsh/.zcompdump -mtime 1)" ] || compinit -C
 
-# Prompt config
-source ~/.config/zsh/prompt.zsh
-
-# Zsh profiling
-# zprof
+source "$ZDOTDIR"/alias.zsh
+source "$ZDOTDIR"/cs50.zsh
+source <(kubectl completion zsh)
+source "$ZDOTDIR"/prompt.zsh
