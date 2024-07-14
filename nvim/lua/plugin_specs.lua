@@ -1,8 +1,6 @@
 -- Define the path for the lazy.nvim plugin
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
-
--- Check if lazy.nvim is not already installed, then clone it from the repository
-if not vim.loop.fs_stat(lazypath) then
+if not (vim.uv or vim.loop).fs_stat(lazypath) then
   vim.fn.system({
     "git",
     "clone",
@@ -12,8 +10,6 @@ if not vim.loop.fs_stat(lazypath) then
     lazypath,
   })
 end
-
--- Prepend the path to lazy.nvim to the runtime path
 vim.opt.rtp:prepend(lazypath)
 
 -- Load and setup the lazy.nvim plugin with specified configurations
@@ -107,14 +103,14 @@ require("lazy").setup({
       require("Navigator").setup()
     end,
   },
-  {
-    "Exafunction/codeium.nvim",
-    dependencies = {
-      "nvim-lua/plenary.nvim",
-      "hrsh7th/nvim-cmp",
-    },
-    config = function()
-      require("codeium").setup({})
-    end,
-  },
+  -- {
+  --   "Exafunction/codeium.nvim",
+  --   dependencies = {
+  --     "nvim-lua/plenary.nvim",
+  --     "hrsh7th/nvim-cmp",
+  --   },
+  --   config = function()
+  --     require("codeium").setup({})
+  --   end,
+  -- },
 })

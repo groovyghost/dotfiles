@@ -24,7 +24,7 @@ return {
       sources = {
         --Diagnostics
         --Code_actions
-        nls.builtins.code_actions.shellcheck,
+        -- nls.builtins.code_actions.shellcheck,
         --Formatting
         nls.builtins.formatting.stylua.with({ extra_args = { "--indent-type", "Spaces", "--indent-width", "2" } }),
         nls.builtins.formatting.shfmt,

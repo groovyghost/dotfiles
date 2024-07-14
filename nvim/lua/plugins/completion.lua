@@ -66,7 +66,7 @@ return {
         ["<CR>"] = cmp.mapping.confirm({ select = false }),
       }),
       sources = cmp.config.sources({
-        { name = "codeium" }, --Codeium as a source
+        -- { name = "codeium" }, --Codeium as a source
         { name = "nvim_lsp" }, -- LSP as a source
         { name = "luasnip" }, -- Luasnip as a source
         { name = "buffer" }, -- Buffer words as a source
@@ -86,7 +86,7 @@ return {
 
           -- Source
           vim_item.menu = ({
-            codeium = "[AI]",
+            -- codeium = "[AI]",
             nvim_lsp = "[LSP]",
             luasnip = "[LuaSnip]",
             buffer = "[Buffer]",
