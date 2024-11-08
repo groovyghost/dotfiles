@@ -11,6 +11,7 @@ export PATH=$HOME/.local/bin:$HOME/.local/go/bin:$HOME/.pulumi/bin:$HOME/.cargo/
 # Enable zsh options
 autoload -Uz colors && colors
 setopt extendedglob incappendhistory hist_ignore_all_dups hist_find_no_dups interactivecomments
+setopt HIST_IGNORE_SPACE
 
 # Download and load zinit
 ZINIT_HOME="${XDG_DATA_HOME:-$HOME/.local/share}/zinit/zinit.git"
